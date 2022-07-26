@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "816591518164",
+    "firebase_url": "https://sport-events-scheduler-default-rtdb.firebaseio.com",
+    "project_id": "sport-events-scheduler",
+    "storage_bucket": "sport-events-scheduler.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816591518164:android:408871ec37bdfe22073e41",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDon5LkZ7jx8jeFSrz8jw7kAG6PY5wxkIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816591518164:android:fc69bce6e9f41cd6073e41",
+        "android_client_info": {
+          "package_name": "com.example.sport_events_scheduler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDon5LkZ7jx8jeFSrz8jw7kAG6PY5wxkIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816591518164:android:7901183a43ec1639073e41",
+        "android_client_info": {
+          "package_name": "com.example.sports_events_scheduler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDon5LkZ7jx8jeFSrz8jw7kAG6PY5wxkIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816591518164-rchse6jdnq0017rob6sg6c7btguvbqta.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
