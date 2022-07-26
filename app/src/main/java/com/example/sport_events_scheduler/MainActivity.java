@@ -60,8 +60,18 @@ public class MainActivity extends AppCompatActivity {
 
                     if (passwordDB.equals(password)) {
                         passwordText.setError(null);
-                        /** Start the User Activity. */
-                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+
+                        /** User or Admin. */
+                        final boolean admin = snapshot.child(username).child("admin").getValue(boolean.class);
+                        /** Start the User / Admin Activity. */
+                        Intent intent;
+                        if (admin) {
+                            intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        }
+                        else {
+                            intent = new Intent(getApplicationContext(), UserActivity.class);
+                        }
+
                         startActivity(intent);
                     }
                     else {
