@@ -1,15 +1,21 @@
 package com.example.sport_events_scheduler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +38,48 @@ public class MainActivity extends AppCompatActivity {
         registerText = (TextView) findViewById(R.id.registerText);
         login = (Button) findViewById(R.id.loginButton);
         signup = (Button) findViewById(R.id.signupButton);
+    }
+
+    /** Called when the user taps the Log in button */
+    public void login(View view) {
+
+        String username = userNameText.getText().toString();
+        String password = passwordText.getText().toString();
+
+        /** Reading. */
+        DatabaseReference ref = remote.getAccountRef();
+        Query checkUser = ref.orderByChild("username").equalTo(username);
+        checkUser.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    userNameText.setError(null);
+
+                    String passwordDB = snapshot.child(username).child("password").getValue(String.class);
+
+                    if (passwordDB.equals(password)) {
+                        passwordText.setError(null);
+                        /** Start the User Activity. */
+                        Intent intent = new Intent(getApplicationContext(), UserActivity.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        passwordText.setError("Wrong Password");
+                        passwordText.requestFocus();
+                    }
+                }
+                else {
+                    userNameText.setError("No such User exist");
+                    userNameText.requestFocus();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /** Called when the user taps the Sign Up button */
