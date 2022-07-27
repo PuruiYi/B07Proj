@@ -1,0 +1,13 @@
+Story 1, 2, 5, 6 completed.
+
+The UI design is very simple.
+
+Detail:
+
+Story 1: Users are able to sign up and log in to their accounts. Users simply provide username and password when sign up, and those data will be stored in the firebase realtime database. The data will be pulled out from the database to verify the user's identity when log in.
+
+Story 2: When users log in to their account successfully, they are able to see a list of venues if there's any in the database. If users click on a venue tab, all activities in that venue will be displayed in a new window (called activity in android studio). And users can schedule a new event at that venue by clicking the button on the right-bottom corner. 
+
+Story 5: Similar to what we've done in story 1, admins are able to log in to their accounts. Those account are needed to be added manually.
+
+Story 6: When admins log in to their account successfully, they will see a button that allows them to add a new venue in where users can schedule new activities. Admins need to provide a name for the venue they want to add. If the name provided exists, admins will be notified by an error message.
