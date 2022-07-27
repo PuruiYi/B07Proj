@@ -4,20 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewVenueActivity">
+    tools:context=".AddNewVenue">
 
-    <EditText
-        android:id="@+id/locationVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        android:ems="10"
-        android:hint="@string/avenueLocation"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/capacityVenue" />
+
 
     <TextView
         android:id="@+id/textView3"
@@ -43,55 +32,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <EditText
-        android:id="@+id/startVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        android:ems="10"
-        android:hint="@string/avenueStartAt"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locationVenue" />
-
-    <EditText
-        android:id="@+id/endVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        android:ems="10"
-        android:hint="@string/avenueEndAt"
-        android:inputType="time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startVenue" />
-
-    <EditText
-        android:id="@+id/capacityVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        android:ems="10"
-        android:hint="@string/avenueCapacity"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameVenue" />
 
     <Button
-        android:id="@+id/addButton"
+        android:id="@+id/addVenueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="44dp"
         android:linksClickable="false"
-        android:onClick="add"
+        android:onClick="addNewVenue"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endVenue" />
+        app:layout_constraintTop_toBottomOf="@+id/nameVenue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

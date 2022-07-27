@@ -16,7 +16,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void addVenue(View view) {
-        Intent intent = new Intent(getApplicationContext(), NewVenueActivity.class);
+        Intent intent = new Intent(getApplicationContext(), AddNewVenue.class);
         startActivity(intent);
     }
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class DisplayActivitiesAtVenue extends AppCompatActivity {
 
     Remote remote;
+    Intent parent;
     DatabaseReference ref;
     RecyclerView recyclerView;
     EventAdapter adapter;
@@ -28,11 +30,11 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_activities_at_avenue);
 
-        Intent intent = getIntent();
 
         /** Initializer. */
         remote = new Remote();
-        ref = remote.getAvenueRef(intent.getStringExtra("location"));
+        parent = getIntent();
+        ref = remote.getAvenueRef(parent.getStringExtra("location"));
         recyclerView = findViewById(R.id.eventList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,12 +47,13 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                events.clear();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    //for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                        SportEvent sportEvent = dataSnapshot.getValue(SportEvent.class);
-                        events.add(sportEvent);
-                    //}
+                    SportEvent sportEvent = dataSnapshot.getValue(SportEvent.class);
+                    events.add(sportEvent);
+
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -61,6 +64,12 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void addNewActivity(View view) {
+        Intent intent = new Intent(getApplicationContext(), AddNewEvent.class);
+        intent.putExtra("location", parent.getStringExtra("location"));
+        startActivity(intent);
     }
 
 }

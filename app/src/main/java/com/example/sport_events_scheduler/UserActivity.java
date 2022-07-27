@@ -44,6 +44,7 @@ public class UserActivity extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                venues.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
@@ -58,6 +59,7 @@ public class UserActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 
