@@ -14,8 +14,32 @@
         android:theme="@style/Theme.Sport_events_scheduler"
         tools:targetApi="31">
         <activity
+            android:name=".DisplayActivitiesAtVenue"
+            android:parentActivityName=".UserActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UserActivity" />
+        </activity>
+        <activity
+            android:name=".NewVenueActivity"
+            android:parentActivityName=".AdminActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AdminActivity" />
+        </activity>
+        <activity
             android:name=".AdminActivity"
-            android:exported="false" />
+            android:parentActivityName=".MainActivity">
+
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".UserActivity"
             android:parentActivityName=".MainActivity">

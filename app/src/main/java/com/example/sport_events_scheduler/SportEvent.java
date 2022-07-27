@@ -1,6 +1,6 @@
 package com.example.sport_events_scheduler;
 
-public abstract class SportEvent {
+public class SportEvent {
 
     private String name;
     private int capacity;

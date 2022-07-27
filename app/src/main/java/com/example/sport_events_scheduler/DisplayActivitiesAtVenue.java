@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,28 +15,30 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UserActivity extends AppCompatActivity {
+public class DisplayActivitiesAtVenue extends AppCompatActivity {
 
+    Remote remote;
     DatabaseReference ref;
     RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
+    EventAdapter adapter;
+    ArrayList<SportEvent> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        setContentView(R.layout.activity_display_activities_at_avenue);
 
+        Intent intent = getIntent();
 
         /** Initializer. */
-        Remote remote = new Remote();
-        ref = remote.getEventRef();
-        recyclerView = findViewById(R.id.avenueList);
+        remote = new Remote();
+        ref = remote.getAvenueRef(intent.getStringExtra("location"));
+        recyclerView = findViewById(R.id.eventList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        venues = new ArrayList<>();
-        adapter = new VenueAdapter(this, venues);
+        events = new ArrayList<>();
+        adapter = new EventAdapter(this, events);
         recyclerView.setAdapter(adapter);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -47,8 +47,10 @@ public class UserActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    String venue = dataSnapshot.getKey();
-                    venues.add(venue);
+                    //for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                        SportEvent sportEvent = dataSnapshot.getValue(SportEvent.class);
+                        events.add(sportEvent);
+                    //}
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -61,12 +63,4 @@ public class UserActivity extends AppCompatActivity {
 
     }
 
-    public void showActivities(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), DisplayActivitiesAtVenue.class);
-        TextView location = (TextView) view.findViewById(R.id.nameAvenueLabel);
-        intent.putExtra("location", location.getText().toString());
-        startActivity(intent);
-
-    }
 }

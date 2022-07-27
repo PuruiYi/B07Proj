@@ -18,4 +18,8 @@ public class Remote {
     public DatabaseReference getEventRef() {
         return remote.getReference("event");
     }
+
+    public DatabaseReference getAvenueRef(String given) {
+        return remote.getReference("event/" + given);
+    }
 }

@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
                         }
-
+                        clearText();
                         startActivity(intent);
                     }
                     else {
@@ -101,11 +101,14 @@ public class MainActivity extends AppCompatActivity {
         //Writing to a realtime database
         DatabaseReference ref = remote.getAccountRef();
         User user = new User(username, password);
-        ref.push().setValue(user);
+        ref.child(username).setValue(user);
+
+        clearText();
     }
 
     /** Display Sign Up button. */
     public void trySignup(View view) {
+        clearText();
         registerText.setVisibility(View.INVISIBLE);
         loginText.setVisibility(View.VISIBLE);
         login.setVisibility(View.INVISIBLE);
@@ -114,9 +117,16 @@ public class MainActivity extends AppCompatActivity {
 
     /** Display Login button. */
     public void tryLogin(View view) {
+        clearText();
         registerText.setVisibility(View.VISIBLE);
         loginText.setVisibility(View.INVISIBLE);
         login.setVisibility(View.VISIBLE);
         signup.setVisibility(View.INVISIBLE);
+    }
+
+    /** Clear text entered. */
+    private void clearText() {
+        userNameText.setText("");
+        passwordText.setText("");
     }
 }
