@@ -17,6 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     Remote remote;
@@ -94,16 +97,39 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Sign Up button */
     public void signUp(View view) {
-
+        /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
-
-        //Writing to a realtime database
-        DatabaseReference ref = remote.getAccountRef();
-        User user = new User(username, password);
-        ref.child(username).setValue(user);
+        /** Validate inputs. */
+        if (areValidInputs(username, password)) {
+            /** Clear errors. */
+            userNameText.setError(null);
+            passwordText.setError(null);
+            /** Writing to a realtime database. */
+            DatabaseReference ref = remote.getAccountRef();
+            User user = new User(username, password);
+            ref.child(username).setValue(user);
+        }
 
         clearText();
+    }
+
+    /** Validate username and password provided by users. */
+    private boolean areValidInputs(String username, String password) {
+        Pattern pattern = Pattern.compile("\\s*");
+        Matcher usernameM = pattern.matcher(username);
+        Matcher passwordM = pattern.matcher(password);
+        if (usernameM.matches()) {
+            userNameText.setError("Username cannot be empty.");
+            userNameText.requestFocus();
+            return false;
+        }
+        if (passwordM.matches()) {
+            passwordText.setError("Password cannot be empty.");
+            passwordText.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     /** Display Sign Up button. */
