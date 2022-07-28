@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class UserActivity extends AppCompatActivity {
 
+    Intent parent;
     DatabaseReference ref;
     RecyclerView recyclerView;
     VenueAdapter adapter;
@@ -32,6 +33,7 @@ public class UserActivity extends AppCompatActivity {
 
         /** Initializer. */
         Remote remote = new Remote();
+        parent = getIntent();
         ref = remote.getEventRef();
         recyclerView = findViewById(R.id.avenueList);
         recyclerView.setHasFixedSize(true);
@@ -46,11 +48,9 @@ public class UserActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 venues.clear();
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                for (DataSnapshot venueSnapshot : snapshot.getChildren())
+                    venues.add(venueSnapshot.getKey());
 
-                    String venue = dataSnapshot.getKey();
-                    venues.add(venue);
-                }
                 adapter.notifyDataSetChanged();
             }
 
@@ -68,6 +68,7 @@ public class UserActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), DisplayActivitiesAtVenue.class);
         TextView location = (TextView) view.findViewById(R.id.nameAvenueLabel);
         intent.putExtra("location", location.getText().toString());
+        intent.putExtra("user", parent.getStringExtra("user"));
         startActivity(intent);
 
     }

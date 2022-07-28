@@ -19,7 +19,11 @@ public class Remote {
         return remote.getReference("event");
     }
 
-    public DatabaseReference getAvenueRef(String given) {
-        return remote.getReference("event/" + given);
+    public DatabaseReference getVenueRef(String venue) {
+        return remote.getReference("event/" + venue);
+    }
+
+    public DatabaseReference getUserRef(String user) {
+        return remote.getReference("account/" + user);
     }
 }

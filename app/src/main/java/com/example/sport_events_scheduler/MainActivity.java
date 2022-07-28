@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
                         }
                         clearText();
+                        intent.putExtra("user", username);
                         startActivity(intent);
                     }
                     else {
