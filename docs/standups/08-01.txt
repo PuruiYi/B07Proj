@@ -1,6 +1,6 @@
 //Person 1
 
-Name: 
+Name: Chengye Wu
 
 What have you done since yesterday?
 	- Put points here ...
@@ -14,7 +14,7 @@ Any impediments or stumbling blocks?
   
 //Person 2
 
-Name: 
+Name: Jumana Fanous
 
 What have you done since yesterday?
 	- Put points here ...
@@ -28,7 +28,7 @@ Any impediments or stumbling blocks?
   
 //Person 3
 
-Name: 
+Name: Barry Zheng
 
 What have you done since yesterday?
 	- Put points here ...
@@ -41,7 +41,7 @@ Any impediments or stumbling blocks?
   
 //Person 4
 
-Name: 
+Name: Yuchen Jiang
 
 What have you done since yesterday?
 	- Put points here ...
@@ -54,7 +54,7 @@ Any impediments or stumbling blocks?
   
 //Person 5
 
-Name: 
+Name: Purui Yi
 
 What have you done since yesterday?
 	- Put points here ...
