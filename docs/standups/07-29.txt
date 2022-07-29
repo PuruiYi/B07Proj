@@ -7,6 +7,9 @@ Jumana chose to do the 3rd user stories,
 Yu chose to do the 7th user stories, 
 and Perry decided to do an additional feature that would allow the admins to decide to delete and change appointments.
 
+Before coding, we can unify the JDM environment and the emulator version.
+Android API 33  &&  Pixel 2 API 30
+
 
 
 //Person 1
