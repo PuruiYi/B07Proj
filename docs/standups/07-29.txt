@@ -1,0 +1,77 @@
+We had a one hour zoom meeting today at 15:00. 
+We discussed the specific division of labor and rejected the previous discussion of using an MVP for the Project. 
+Barry has most of the stuff done for the Fire database. 
+The four remaining people decided to start by assigning 4 different pages. 
+Chengye chose to do the 4th user stories, 
+Jumana chose to do the 3rd user stories, 
+Yu chose to do the 7th user stories, 
+and Perry decided to do an additional feature that would allow the admins to decide to delete and change appointments.
+
+
+
+//Person 1
+
+Name: 
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 2
+
+Name: 
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 3
+
+Name: 
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 4
+
+Name: 
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: 
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
