@@ -5,13 +5,13 @@ We didn't have a meeting today because we all had a lot of classes to attend tod
 Name: Chengye Wu
 
 What have you done since yesterday?
-	- Put points here ...
+	- I finished watching about MVP on youtube. I decided it was a good way to get a clearer and cleaner division of labor. Just need one person to do the whole back end thing. I think it's best to have three people doing the front end.
 
 What are you planning on doing today?
-	- Put points here ...
+	- Since there was no meeting today, I decided I wanted to speed up my learning of Android Studio. I am teaching myself how to develop an Android software and how to design it in such a way that I can avoid future problems and I don't want to slow down my teammates.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- The point about moving from one activity to another is very frustrating to me. I can't understand what the logic is. I only know the surface things, I don't know why they are created this way, and I can't understand the code. I decided to join Office hour to solve this problem.
   
   
 //Person 2
