@@ -33,13 +33,13 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- I have implemented inputs validation. E.g. inputs cannot be empty, Time inputs should be in 24-hour format, and so on.
 
 What are you planning on doing today?
-	- Put points here ...
+	- I am planning implement inputs validation.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- How to make database design more efficient.
   
 //Person 4
 
