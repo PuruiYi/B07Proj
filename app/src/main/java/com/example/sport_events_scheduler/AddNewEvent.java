@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AddNewEvent extends AppCompatActivity {
 
     Remote remote;
@@ -31,15 +34,62 @@ public class AddNewEvent extends AppCompatActivity {
 
     public void add(View view) {
 
+        /** Event info. */
         String name = nameText.getText().toString();
-        int capacity = Integer.parseInt(capacityText.getText().toString().trim());
+        String capacity = capacityText.getText().toString();
         String location = parent.getStringExtra("location");
         String start = startText.getText().toString();
         String end = endText.getText().toString();
+        /** Validate Inputs. */
+        if (!isValidEvent(name, capacity, start, end))
+            return;
+        /** Clear errors. */
+        nameText.setError(null);
+        capacityText.setError(null);
+        startText.setError(null);
+        endText.setError(null);
+        /** Reference to the path. */
+        DatabaseReference ref = remote.getEventRef().child(location).push();
+        String id = ref.getKey();
+        /** SportEvent Object. */
+        SportEvent event = new SportEvent(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        /** Push data into the database. */
+        ref.setValue(event);
+        /** Clear Inputs. */
+        nameText.setText("");
+        capacityText.setText("");
+        startText.setText("");
+        endText.setText("");
+    }
 
-        SportEvent event = new SportEvent(name, capacity, 0, start, end, location);
-        DatabaseReference ref = remote.getEventRef();
-        ref.child(location).child(name).setValue(event);
-
+    /** Validate event information provided by users. */
+    private boolean isValidEvent(String name, String capacity, String start, String end) {
+        Pattern pattern = Pattern.compile("\\s*");
+        Pattern time = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
+        Matcher nameM = pattern.matcher(name);
+        Matcher capacityM = pattern.matcher(capacity);
+        Matcher startM = time.matcher(start);
+        Matcher endM = time.matcher(end);
+        if (nameM.matches()) {
+            nameText.setError("Name cannot be empty.");
+            nameText.requestFocus();
+            return false;
+        }
+        if (capacityM.matches() || Integer.parseInt(capacity) <= 0) {
+            capacityText.setError("Capacity should be > 0.");
+            capacityText.requestFocus();
+            return false;
+        }
+        if (!startM.matches()) {
+            startText.setError("Time should be in 24-hour format.");
+            startText.requestFocus();
+            return false;
+        }
+        if (!endM.matches()) {
+            endText.setError("Time should be in 24-hour format.");
+            endText.requestFocus();
+            return false;
+        }
+        return true;
     }
 }
