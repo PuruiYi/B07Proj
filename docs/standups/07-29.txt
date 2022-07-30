@@ -72,10 +72,10 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- Put points here ...
+	- I added the login/sign up as a admin feature and finished the basic user interface of admin.
 
 What are you planning on doing today?
-	- Put points here ...
+	- I will continue working on the functionalities and features in admin user interface.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope.
