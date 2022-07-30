@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Remote remote;
     EditText userNameText, passwordText;
     TextView loginText, registerText;
+    CheckBox loginAdmin, registerAdmin;
     Button login, signup;
 
 
@@ -39,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.password);
         loginText = (TextView) findViewById(R.id.loginText);
         registerText = (TextView) findViewById(R.id.registerText);
+        loginAdmin = (CheckBox) findViewById(R.id.loginAdmin);
+        registerAdmin = (CheckBox) findViewById(R.id.registerAdmin);
         login = (Button) findViewById(R.id.loginButton);
         signup = (Button) findViewById(R.id.signupButton);
     }
 
     /** Called when the user taps the Log in button */
     public void login(View view) {
-
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
 
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                         /** Start the User / Admin Activity. */
                         Intent intent;
                         if (admin) {
-                            intent = new Intent(getApplicationContext(), AdminActivity.class);
+                            intent = new Intent(getApplicationContext(), AdminActivity2.class);
                         }
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
@@ -100,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
+        Boolean adminLogin = loginAdmin.isChecked();
+        Boolean adminRegis = registerAdmin.isChecked();
+        
         /** Validate inputs. */
         if (areValidInputs(username, password)) {
             /** Clear errors. */
@@ -110,6 +116,14 @@ public class MainActivity extends AppCompatActivity {
             User user = new User(username, password);
             ref.child(username).setValue(user);
         }
+
+        
+
+        //Writing to a realtime database
+        DatabaseReference ref = remote.getAccountRef();
+        User user = new User(username, password,adminRegis);
+        ref.child(username).setValue(user);
+
 
         clearText();
     }
@@ -137,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
         clearText();
         registerText.setVisibility(View.INVISIBLE);
         loginText.setVisibility(View.VISIBLE);
+        loginAdmin.setVisibility(View.INVISIBLE);
+        registerAdmin.setVisibility(View.VISIBLE);
         login.setVisibility(View.INVISIBLE);
         signup.setVisibility(View.VISIBLE);
     }
@@ -146,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
         clearText();
         registerText.setVisibility(View.VISIBLE);
         loginText.setVisibility(View.INVISIBLE);
+        loginAdmin.setVisibility(View.VISIBLE);
+        registerAdmin.setVisibility(View.INVISIBLE);
         login.setVisibility(View.VISIBLE);
         signup.setVisibility(View.INVISIBLE);
     }
