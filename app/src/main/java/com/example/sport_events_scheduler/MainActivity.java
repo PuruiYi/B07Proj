@@ -103,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
-        Boolean adminLogin = loginAdmin.isChecked();
-        Boolean adminRegis = registerAdmin.isChecked();
         
         /** Validate inputs. */
         if (areValidInputs(username, password)) {
@@ -116,14 +114,6 @@ public class MainActivity extends AppCompatActivity {
             User user = new User(username, password);
             ref.child(username).setValue(user);
         }
-
-        
-
-        //Writing to a realtime database
-        DatabaseReference ref = remote.getAccountRef();
-        User user = new User(username, password,adminRegis);
-        ref.child(username).setValue(user);
-
 
         clearText();
     }
