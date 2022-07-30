@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.sport_events_scheduler" >
+    package="com.example.sport_events_scheduler">
 
     <application
         android:allowBackup="true"
@@ -12,13 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sport_events_scheduler"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".AdminActivity2"
+            android:exported="false" />
         <activity
             android:name=".AddNewEvent"
             android:exported="false" />
         <activity
             android:name=".DisplayActivitiesAtVenue"
-            android:parentActivityName=".UserActivity" >
+            android:parentActivityName=".UserActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -27,7 +30,7 @@
         </activity>
         <activity
             android:name=".AddNewVenue"
-            android:parentActivityName=".AdminActivity" >
+            android:parentActivityName=".AdminActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -36,7 +39,7 @@
         </activity>
         <activity
             android:name=".AdminActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -45,7 +48,7 @@
         </activity>
         <activity
             android:name=".UserActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -54,7 +57,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
