@@ -31,13 +31,14 @@ Any impediments or stumbling blocks?
 Name: Jumana Fanous
 
 What have you done since yesterday?
-	- Put points here ...
+	- I learned more about how to use Android Studio in order to begin developing android applications.
 
 What are you planning on doing today?
-	- Put points here ...
+	- I will be assigning myself a user story to work on.
+	- I will also be managing JIRA and assigning the tasks to our teammates.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope, not yet.
   
   
 //Person 3
