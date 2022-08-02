@@ -52,7 +52,7 @@ public class AddNewEvent extends AppCompatActivity {
         DatabaseReference ref = remote.getEventRef().child(location).push();
         String id = ref.getKey();
         /** SportEvent Object. */
-        SportEvent event = new SportEvent(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, location);
         /** Push data into the database. */
         ref.setValue(event);
         /** Clear Inputs. */

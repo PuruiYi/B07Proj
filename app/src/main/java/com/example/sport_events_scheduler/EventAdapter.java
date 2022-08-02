@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<SportEvent> events;
+    ArrayList<Event> events;
 
-    public EventAdapter(Context context, ArrayList<SportEvent> events) {
+    public EventAdapter(Context context, ArrayList<Event> events) {
         this.context = context;
         this.events = events;
     }
@@ -31,13 +31,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        SportEvent event = events.get(position);
+        Event event = events.get(position);
         holder.id.setText(event.getId());
         holder.name.setText(event.getName());
         holder.capacity.setText(Integer.toString(event.getCapacity()));
         holder.joined.setText(Integer.toString(event.getJoined()));
-        holder.start.setText(event.getStart());
-        holder.end.setText(event.getEnd());
+        holder.time.setText(event.getStart() + " - " + event.getEnd());
         holder.location.setText(event.getLocation());
 
     }
@@ -49,7 +48,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, name, capacity, joined, start, end, location;
+        TextView id, name, capacity, joined, time, location;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,8 +57,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             name = itemView.findViewById(R.id.eventName);
             capacity = itemView.findViewById(R.id.eventCapacity);
             joined = itemView.findViewById(R.id.eventJoined);
-            start = itemView.findViewById(R.id.eventStartAt);
-            end = itemView.findViewById(R.id.eventEndAt);
+            time = itemView.findViewById(R.id.eventTime);
             location = itemView.findViewById(R.id.eventLocation);
         }
     }

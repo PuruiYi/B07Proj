@@ -23,7 +23,7 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
     DatabaseReference ref;
     RecyclerView recyclerView;
     EventAdapter adapter;
-    ArrayList<SportEvent> events;
+    ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,8 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
-                    SportEvent sportEvent = dataSnapshot.getValue(SportEvent.class);
-                    events.add(sportEvent);
+                    Event event = dataSnapshot.getValue(Event.class);
+                    events.add(event);
 
                 }
                 adapter.notifyDataSetChanged();
