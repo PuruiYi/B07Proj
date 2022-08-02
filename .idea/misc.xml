@@ -13,6 +13,10 @@
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_user.xml" value="0.43046875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/avenue.xml" value="0.4296875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/event.xml" value="0.43046875" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_event.xml" value="0.20625" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_pending_event.xml" value="0.20625" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/item.xml" value="0.20625" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/venue.xml" value="0.20625" />
         <entry key="..\:/Users/Admin/Desktop/xu/android/app/src/main/res/layout/event.xml" value="0.5" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/admin-layout2/app/src/main/res/drawable/ic_baseline_call_to_action_24.xml" value="0.2415" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/admin-layout2/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2415" />
@@ -22,22 +26,11 @@
         <entry key="..\:/Users/Perry/Desktop/B07Proj/admin-layout2/app/src/main/res/layout/fragment_event.xml" value="0.5125" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/admin-layout2/app/src/main/res/layout/fragment_pending_event.xml" value="0.5125" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/admin-layout2/app/src/main/res/menu/bottom_nav_bar.xml" value="0.5114583333333333" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/activity_admin2.xml" value="0.5171875" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/activity_new_avenue.xml" value="0.4861111111111111" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/activity_new_event.xml" value="0.4861111111111111" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/fragment_account.xml" value="0.278125" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/fragment_event.xml" value="0.278125" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/fragment_pending_event.xml" value="0.5171875" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/item.xml" value="0.33" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/layout/venue.xml" value="0.278125" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/menu/bottom_nav_bar.xml" value="0.4861111111111111" />
-        <entry key="..\:/Users/Perry/Desktop/B07Proj/dataToRecycler/app/src/main/res/menu/option_menu.xml" value="0.4861111111111111" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_admin.xml" value="0.25" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_display_activities_at_avenue.xml" value="0.15260416666666668" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_new_avenue.xml" value="0.22" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_user.xml" value="0.5" />
-
       </map>
     </option>
   </component>
@@ -46,12 +39,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.5171875" />
-      </ProjectState>
-    </option>
   </component>
 </project>

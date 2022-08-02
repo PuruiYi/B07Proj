@@ -52,7 +52,37 @@ public class AddNewEvent extends AppCompatActivity {
         DatabaseReference ref = remote.getEventRef().child(location).push();
         String id = ref.getKey();
         /** SportEvent Object. */
-        SportEvent event = new SportEvent(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        /** Push data into the database. */
+        ref.setValue(event);
+        /** Clear Inputs. */
+        nameText.setText("");
+        capacityText.setText("");
+        startText.setText("");
+        endText.setText("");
+    }
+
+    public void eventRequest(View view) {
+
+        /** Event info. */
+        String name = nameText.getText().toString();
+        String capacity = capacityText.getText().toString();
+        String location = parent.getStringExtra("location");
+        String start = startText.getText().toString();
+        String end = endText.getText().toString();
+        /** Validate Inputs. */
+        if (!isValidEvent(name, capacity, start, end))
+            return;
+        /** Clear errors. */
+        nameText.setError(null);
+        capacityText.setError(null);
+        startText.setError(null);
+        endText.setError(null);
+        /** Reference to the path. */
+        DatabaseReference ref = remote.getPendingEventRef().push();
+        String id = ref.getKey();
+        /** SportEvent Object. */
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, location);
         /** Push data into the database. */
         ref.setValue(event);
         /** Clear Inputs. */

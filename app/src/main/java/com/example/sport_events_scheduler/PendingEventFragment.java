@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -26,9 +25,9 @@ public class PendingEventFragment extends Fragment {
     DatabaseReference ref;
     RecyclerView recyclerView;
     PendingEventAdapter pendingEventAdapter;
-    ArrayList<PendingEvent> pendingEventArrayList;
+    ArrayList<Event> pendingEvents;
 
-    public Task<Void> add(PendingEvent p){
+    public Task<Void> add(Event p){
         return ref.push().setValue(p);
     }
 
@@ -52,8 +51,8 @@ public class PendingEventFragment extends Fragment {
         ref = remote.getPendingEventRef();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        pendingEventArrayList = new ArrayList<>();
-        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEventArrayList);
+        pendingEvents = new ArrayList<>();
+        pendingEventAdapter = new PendingEventAdapter(this.getContext(), pendingEvents);
 //        recyclerView.setAdapter(pendingEventAdapter);
 
         //get pendingEvent, add it to event
@@ -68,14 +67,12 @@ public class PendingEventFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                pendingEventArrayList.clear();
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    for(DataSnapshot ds:dataSnapshot.getChildren()) {
-                        PendingEvent pendingEvent = ds.getValue(PendingEvent.class);
+                pendingEvents.clear();
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Event pendingEvent = dataSnapshot.getValue(Event.class);
                         recyclerView.setAdapter(pendingEventAdapter);
-                        pendingEventArrayList.add(pendingEvent);
+                        pendingEvents.add(pendingEvent);
 
-                    }
                 }
                 pendingEventAdapter.notifyDataSetChanged();
             }
