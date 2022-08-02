@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         /** Start the User / Admin Activity. */
                         Intent intent;
                         if (admin) {
-                            intent = new Intent(getApplicationContext(), AdminActivity.class);
+                            intent = new Intent(getApplicationContext(), AdminActivity2.class);
                         }
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
