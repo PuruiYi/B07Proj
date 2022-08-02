@@ -57,10 +57,10 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- Put points here ...
+	- I finished displaying pending events on admin user side 
 
 What are you planning on doing today?
-	- Put points here ...
+	- I will add features on accept/reject pending events
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope
