@@ -32,6 +32,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         SportEvent event = events.get(position);
+        holder.id.setText(event.getId());
         holder.name.setText(event.getName());
         holder.capacity.setText(Integer.toString(event.getCapacity()));
         holder.joined.setText(Integer.toString(event.getJoined()));
@@ -48,11 +49,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, capacity, joined, start, end, location;
+        TextView id, name, capacity, joined, start, end, location;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            id = itemView.findViewById(R.id.eventId);
             name = itemView.findViewById(R.id.eventName);
             capacity = itemView.findViewById(R.id.eventCapacity);
             joined = itemView.findViewById(R.id.eventJoined);

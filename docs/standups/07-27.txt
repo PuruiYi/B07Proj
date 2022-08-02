@@ -1,0 +1,11 @@
+Today we focused on task assignment. 
+We decided to complete our Project with MVP (Model View Presenter), 
+which separates data processing, data display and logic control of the application, 
+and organizes the code in a way that separates business logic, data display and interface, 
+which allows us to do the front-end and back-end separately. 
+
+Because we agreed that each person doing a page would make our division of labor very unclear. 
+In particular, if one person didn't finish his section for a long time, 
+then the other person would have to wait for a long time. So after today's discussion, 
+we decided that the three people who are not familiar with MVP need to go to youtube to learn from videos. 
+Then we will officially assign the tasks the next day.

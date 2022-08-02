@@ -14,6 +14,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class AddNewVenue extends AppCompatActivity {
 
     Remote remote;
@@ -32,6 +35,12 @@ public class AddNewVenue extends AppCompatActivity {
 
     public void addNewVenue(View view) {
         String name = nameText.getText().toString();
+
+        if (!isValidName(name))
+            return;
+
+        /** Clear errors. */
+        nameText.setError(null);
 
         DatabaseReference ref = remote.getEventRef();
         Query checkVenue = ref.orderByKey().equalTo(name);
@@ -54,5 +63,19 @@ public class AddNewVenue extends AppCompatActivity {
 
             }
         });
+
+        nameText.setText("");
+    }
+
+    /** Validate venue name provided by admins. */
+    private boolean isValidName(String name) {
+        Pattern pattern = Pattern.compile("\\s*");
+        Matcher usernameM = pattern.matcher(name);
+        if (usernameM.matches()) {
+            nameText.setError("Name cannot be empty.");
+            nameText.requestFocus();
+            return false;
+        }
+        return true;
     }
 }
