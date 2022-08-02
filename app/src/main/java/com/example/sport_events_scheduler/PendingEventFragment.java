@@ -2,63 +2,89 @@ package com.example.sport_events_scheduler;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PendingEventFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class PendingEventFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    DatabaseReference ref;
+    RecyclerView recyclerView;
+    PendingEventAdapter pendingEventAdapter;
+    ArrayList<PendingEvent> pendingEventArrayList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PendingEventFragment() {
-        // Required empty public constructor
+    public Task<Void> add(PendingEvent p){
+        return ref.push().setValue(p);
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PendingEventFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PendingEventFragment newInstance(String param1, String param2) {
-        PendingEventFragment fragment = new PendingEventFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public Task<Void> update(String key, HashMap<String, Object> hashmap){
+        return ref.child(key).updateChildren(hashmap);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pending_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_pending_event, container, false);
+
+        recyclerView = view.findViewById(R.id.pendingEventList);
+        Remote remote = new Remote();
+        ref = remote.getPendingEventRef();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        pendingEventArrayList = new ArrayList<>();
+        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEventArrayList);
+//        recyclerView.setAdapter(pendingEventAdapter);
+
+        //get pendingEvent, add it to event
+//        PendingEvent pe = (PendingEvent)getActivity().getIntent().getSerializableExtra("EVENT");
+//        if(pe != null){
+//            SportEvent se = new SportEvent(pe.getName(), pe.getCapacity(), 0, pe.getStart(), pe.getEnd(), pe.getLocation());
+//
+//        }
+
+
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pendingEventArrayList.clear();
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    for(DataSnapshot ds:dataSnapshot.getChildren()) {
+                        PendingEvent pendingEvent = ds.getValue(PendingEvent.class);
+                        recyclerView.setAdapter(pendingEventAdapter);
+                        pendingEventArrayList.add(pendingEvent);
+
+                    }
+                }
+                pendingEventAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return view;
     }
 }
