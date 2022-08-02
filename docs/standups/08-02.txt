@@ -31,13 +31,13 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- Making my work (user story 2) accommodate to perry's work (handling pending requests).
 
 What are you planning on doing today?
-	- Put points here ...
+	- UI rework.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope.
   
 //Person 4
 
