@@ -3,13 +3,13 @@
 Name: Chengye Wu
 
 What have you done since yesterday?
-	- Put points here ...
+	- I created a new page where the user can see the events he has booked when he logs in.
 
 What are you planning on doing today?
-	- Put points here ...
+	- I'm going to continue writing the code for story 4 today.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- There's one thing I can't figure out. When a venue is booked at the same time, does it create a conflict? I decided to go to Piazza and ask this question.
   
   
 //Person 2
