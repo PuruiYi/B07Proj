@@ -4,9 +4,9 @@
     <string name="password">Password</string>
     <string name="login">Log in</string>
     <string name="signup">Sign up</string>
-    <string name="avenueName">Enter a name</string>
-    <string name="avenueCapacity">Enter a capacity</string>
+    <string name="avenueName">Name</string>
+    <string name="avenueCapacity">Capacity</string>
     <string name="avenueLocation">Enter a location</string>
-    <string name="avenueStartAt">Enter a start time</string>
-    <string name="avenueEndAt">Enter a end time</string>
+    <string name="avenueStartAt">Start</string>
+    <string name="avenueEndAt">End</string>
 </resources>
