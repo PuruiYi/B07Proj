@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">sport_events_scheduler</string>
-    <string name="username">Enter your username</string>
-    <string name="password">Enter your password</string>
-    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
     <string name="signup">Sign up</string>
     <string name="avenueName">Enter a name</string>
     <string name="avenueCapacity">Enter a capacity</string>

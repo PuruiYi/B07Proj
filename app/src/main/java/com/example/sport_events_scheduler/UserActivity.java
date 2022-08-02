@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +30,9 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
+        /** Welcome message. */
+        Toast.makeText(getApplicationContext(), "Welcome, " +
+                        getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
 
         /** Initializer. */
         Remote remote = new Remote();

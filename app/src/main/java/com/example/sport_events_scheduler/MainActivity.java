@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Firebase realtime database reference. */
+        /** Initializer. */
         remote = new Remote();
-        userNameText = (EditText) findViewById(R.id.username);
-        passwordText = (EditText) findViewById(R.id.password);
-        loginText = (TextView) findViewById(R.id.loginText);
-        registerText = (TextView) findViewById(R.id.registerText);
-        login = (Button) findViewById(R.id.loginButton);
-        signup = (Button) findViewById(R.id.signupButton);
+        userNameText = findViewById(R.id.username);
+        passwordText = findViewById(R.id.password);
+        loginText = findViewById(R.id.loginText);
+        registerText = findViewById(R.id.registerText);
+        login = findViewById(R.id.loginButton);
+        signup = findViewById(R.id.signupButton);
+
     }
 
     /** Called when the user taps the Log in button */
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
                         }
+                        /** Pass username. */
+                        intent.putExtra("user", username);
                         clearText();
                         startActivity(intent);
                     }
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseReference ref = remote.getAccountRef();
             User user = new User(username, password);
             ref.child(username).setValue(user);
+            Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
         }
 
         clearText();
