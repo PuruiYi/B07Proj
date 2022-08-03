@@ -49,7 +49,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pendingEvents = new ArrayList<>();
-        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEventArrayList,this);
+        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEvents,this);
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -74,7 +74,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
     }
 
     @Override
-    public void onItemClick(PendingEvent pendingEvent, int state) {
+    public void onItemClick(Event pendingEvent, int state) {
         if (state == 1){
             eventRef.child(pendingEvent.getLocation()).push().setValue(pendingEvent);
             ref.child(pendingEvent.getId()).removeValue();
