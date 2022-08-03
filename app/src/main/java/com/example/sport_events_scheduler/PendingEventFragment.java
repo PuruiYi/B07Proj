@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -20,20 +21,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PendingEventFragment extends Fragment {
+public class PendingEventFragment extends Fragment implements PendingEventAdapter.OnItemClickListener {
 
-    DatabaseReference ref;
+    DatabaseReference ref;  //ref to pendingEvent
+    DatabaseReference eventRef; //ref to event
     RecyclerView recyclerView;
     PendingEventAdapter pendingEventAdapter;
     ArrayList<Event> pendingEvents;
 
-    public Task<Void> add(Event p){
-        return ref.push().setValue(p);
-    }
-
-    public Task<Void> update(String key, HashMap<String, Object> hashmap){
-        return ref.child(key).updateChildren(hashmap);
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,19 +44,12 @@ public class PendingEventFragment extends Fragment {
         recyclerView = view.findViewById(R.id.pendingEventList);
         Remote remote = new Remote();
         ref = remote.getPendingEventRef();
+        eventRef = remote.getEventRef();
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pendingEvents = new ArrayList<>();
         pendingEventAdapter = new PendingEventAdapter(this.getContext(), pendingEvents);
-//        recyclerView.setAdapter(pendingEventAdapter);
-
-        //get pendingEvent, add it to event
-//        PendingEvent pe = (PendingEvent)getActivity().getIntent().getSerializableExtra("EVENT");
-//        if(pe != null){
-//            SportEvent se = new SportEvent(pe.getName(), pe.getCapacity(), 0, pe.getStart(), pe.getEnd(), pe.getLocation());
-//
-//        }
-
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -76,12 +64,24 @@ public class PendingEventFragment extends Fragment {
                 }
                 pendingEventAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void onItemClick(PendingEvent pendingEvent, int state) {
+        if (state == 1){
+            eventRef.child(pendingEvent.getLocation()).push().setValue(pendingEvent);
+            ref.child(pendingEvent.getId()).removeValue();
+            Toast.makeText(getActivity(), "Accept event successfully", Toast.LENGTH_SHORT).show();
+        }else if(state == 2){
+            ref.child(pendingEvent.getId()).removeValue();
+            Toast.makeText(getActivity(), "Reject event successfully", Toast.LENGTH_SHORT).show();
+        }else{}
     }
 }

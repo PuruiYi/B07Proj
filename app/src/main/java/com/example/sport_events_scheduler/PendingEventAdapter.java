@@ -8,7 +8,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -26,7 +31,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
     @Override
     public PendingEventAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view,listener);
     }
 
     @Override
@@ -41,19 +46,10 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
             popupMenu.inflate(R.menu.option_menu);
             popupMenu.setOnMenuItemClickListener(item->{
                 if(item.getItemId() == R.id.accept_option){
-//                    Intent intent = new Intent(context,PendingEventFragment.class);
-//                    //TODO: add event to firebase database event reference
-//                    /*code start here...
-//                    */
-//                    intent.putExtra("EVENT", (Serializable) pendingEvent);
-//                    context.startActivity(intent);
-
-
-
+                    listener.onItemClick(pendingEvent,1);
                 }else if(item.getItemId() == R.id.reject_option){
-
-                }else{
-                }
+                    listener.onItemClick(pendingEvent,2);
+                }else{}
                 return false;
             });
             popupMenu.show();
@@ -68,15 +64,20 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView venueView, eventTypeView, timeView, capacityView, optionView;
+        OnItemClickListener listener;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
-
+            this.listener = listener;
             venueView = itemView.findViewById(R.id.tvVenue);
             eventTypeView = itemView.findViewById(R.id.tvEvent);
             timeView = itemView.findViewById(R.id.tvTime);
             capacityView = itemView.findViewById(R.id.tvCapacity);
             optionView = itemView.findViewById(R.id.tvOption);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(PendingEvent pendingEvent,int state); //state == 1: accept; state == 2: reject
     }
 }
