@@ -12,17 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<PendingEvent> pendingEventArrayList;
+    ArrayList<Event> pendingEvents;
 
-    public PendingEventAdapter(Context context, ArrayList<PendingEvent> pendingEventArrayList) {
+    public PendingEventAdapter(Context context, ArrayList<Event> pendingEvents) {
         this.context = context;
-        this.pendingEventArrayList = pendingEventArrayList;
+        this.pendingEvents = pendingEvents;
     }
 
     @NonNull
@@ -34,7 +33,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PendingEventAdapter.MyViewHolder holder, int position) {
-        PendingEvent pendingEvent = pendingEventArrayList.get(position);
+        Event pendingEvent = pendingEvents.get(position);
         holder.venueView.setText(pendingEvent.getLocation());
         holder.eventTypeView.setText(pendingEvent.getName());
         holder.timeView.setText(pendingEvent.getStart() + " - " + pendingEvent.getEnd());
@@ -65,7 +64,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
 
     @Override
     public int getItemCount() {
-        return pendingEventArrayList.size();
+        return pendingEvents.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

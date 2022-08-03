@@ -2,7 +2,7 @@ package com.example.sport_events_scheduler;
 
 import java.util.ArrayList;
 
-public class SportEvent {
+public class Event {
 
     private String id;
     private String name;
@@ -13,9 +13,9 @@ public class SportEvent {
     private String location;
     private ArrayList<String> usernames;
 
-    public SportEvent() {}
+    public Event() {}
 
-    public SportEvent(String id, String name, int capacity, int joined, String start, String end, String location) {
+    public Event(String id, String name, int capacity, int joined, String start, String end, String location) {
         this.id = id;
         this.name = name;
         this.capacity = capacity;

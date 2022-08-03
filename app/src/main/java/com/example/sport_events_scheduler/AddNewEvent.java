@@ -62,6 +62,36 @@ public class AddNewEvent extends AppCompatActivity {
         endText.setText("");
     }
 
+    public void eventRequest(View view) {
+
+        /** Event info. */
+        String name = nameText.getText().toString();
+        String capacity = capacityText.getText().toString();
+        String location = parent.getStringExtra("location");
+        String start = startText.getText().toString();
+        String end = endText.getText().toString();
+        /** Validate Inputs. */
+        if (!isValidEvent(name, capacity, start, end))
+            return;
+        /** Clear errors. */
+        nameText.setError(null);
+        capacityText.setError(null);
+        startText.setError(null);
+        endText.setError(null);
+        /** Reference to the path. */
+        DatabaseReference ref = remote.getPendingEventRef().push();
+        String id = ref.getKey();
+        /** SportEvent Object. */
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        /** Push data into the database. */
+        ref.setValue(event);
+        /** Clear Inputs. */
+        nameText.setText("");
+        capacityText.setText("");
+        startText.setText("");
+        endText.setText("");
+    }
+
     /** Validate event information provided by users. */
     private boolean isValidEvent(String name, String capacity, String start, String end) {
         Pattern pattern = Pattern.compile("\\s*");
