@@ -1,6 +1,10 @@
 package com.example.sport_events_scheduler;
 
+import android.os.Parcelable;
+
 import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
 
 public class PendingEvent {
 
@@ -8,7 +12,6 @@ public class PendingEvent {
 //    private String key;
     private int capacity, joined;
     private String end, id, location, name, start;
-
 
     public String getLocation() {
         return location;

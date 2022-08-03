@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -21,14 +22,17 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PendingEventFragment extends Fragment {
+public class PendingEventFragment extends Fragment implements PendingEventAdapter.OnItemClickListener {
 
-    DatabaseReference ref;
+    DatabaseReference ref;  //ref to pendingEvent
+    DatabaseReference eventRef; //ref to event
     RecyclerView recyclerView;
     PendingEventAdapter pendingEventAdapter;
     ArrayList<PendingEvent> pendingEventArrayList;
 
     public Task<Void> add(PendingEvent p){
+//        String key = ref.push().getKey();
+        //TODO:set key for event
         return ref.push().setValue(p);
     }
 
@@ -50,19 +54,29 @@ public class PendingEventFragment extends Fragment {
         recyclerView = view.findViewById(R.id.pendingEventList);
         Remote remote = new Remote();
         ref = remote.getPendingEventRef();
+        eventRef = remote.getEventRef();
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pendingEventArrayList = new ArrayList<>();
-        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEventArrayList);
-//        recyclerView.setAdapter(pendingEventAdapter);
+        pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEventArrayList,this);
+        recyclerView.setAdapter(pendingEventAdapter);
 
-        //get pendingEvent, add it to event
+        //TODO:get pendingEvent, add it to event
 //        PendingEvent pe = (PendingEvent)getActivity().getIntent().getSerializableExtra("EVENT");
-//        if(pe != null){
-//            SportEvent se = new SportEvent(pe.getName(), pe.getCapacity(), 0, pe.getStart(), pe.getEnd(), pe.getLocation());
-//
-//        }
+//        SportEvent se = new SportEvent(pe.getName(), pe.getCapacity(), 0, pe.getStart(), pe.getEnd(), pe.getLocation());
+//        eventRef.push().setValue(se);
 
+//        String test = getActivity().getIntent().getStringExtra("TEST");
+//        Toast.makeText(getActivity(),"test",Toast.LENGTH_LONG).show();
+
+
+//        Toast.makeText(getActivity(),"hello from fragment",Toast.LENGTH_LONG).show();
+//        PendingEvent pe = (PendingEvent) getArguments().getParcelable("EVENT");
+//        String test = getArguments().getString("EVENT");
+//        Toast.makeText(getActivity(),test,Toast.LENGTH_LONG).show();
+//        SportEvent se = new SportEvent(pe.getName(), pe.getCapacity(), 0, pe.getStart(), pe.getEnd(), pe.getLocation());
+//        eventRef.push().setValue(se);
 
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -70,21 +84,30 @@ public class PendingEventFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 pendingEventArrayList.clear();
                 for(DataSnapshot dataSnapshot:snapshot.getChildren()){
-                    for(DataSnapshot ds:dataSnapshot.getChildren()) {
-                        PendingEvent pendingEvent = ds.getValue(PendingEvent.class);
+                        PendingEvent pendingEvent = dataSnapshot.getValue(PendingEvent.class);
                         recyclerView.setAdapter(pendingEventAdapter);
                         pendingEventArrayList.add(pendingEvent);
-
                     }
-                }
                 pendingEventAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void onItemClick(PendingEvent pendingEvent, int state) {
+        if (state == 1){
+            eventRef.child(pendingEvent.getLocation()).push().setValue(pendingEvent);
+            ref.child(pendingEvent.getId()).removeValue();
+            Toast.makeText(getActivity(), "Accept event successfully", Toast.LENGTH_SHORT).show();
+        }else if(state == 2){
+            ref.child(pendingEvent.getId()).removeValue();
+            Toast.makeText(getActivity(), "Reject event successfully", Toast.LENGTH_SHORT).show();
+        }else{}
     }
 }

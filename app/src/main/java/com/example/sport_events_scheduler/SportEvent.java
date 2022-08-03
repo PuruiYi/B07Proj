@@ -15,6 +15,15 @@ public class SportEvent {
 
     public SportEvent() {}
 
+    public SportEvent(String name, int capacity, int joined, String start, String end, String location) {
+        this.name = name;
+        this.capacity = capacity;
+        this.joined = joined;
+        this.start = start;
+        this.end = end;
+        this.location = location;
+    }
+
     public SportEvent(String id, String name, int capacity, int joined, String start, String end, String location) {
         this.id = id;
         this.name = name;
