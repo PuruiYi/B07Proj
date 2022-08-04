@@ -3,13 +3,13 @@
 Name: Chengye Wu
 
 What have you done since yesterday?
-	- Put points here ...
+	I didn't code anything yesterday.
 
 What are you planning on doing today?
-	- Put points here ...
+	I will take the pages and code assigned to me and complete them.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	I can't seem to get my code to integrate with master branch.
   
   
 //Person 2
