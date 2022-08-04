@@ -17,13 +17,13 @@ Any impediments or stumbling blocks?
 Name: Jumana Fanous
 
 What have you done since yesterday?
-	- Put points here ...
+	- Started working on my user story
 
 What are you planning on doing today?
-	- Put points here ...
+	- Continue working on my user story
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Not really, just tryin gto figure my way around Android Studio
   
   
 //Person 3
