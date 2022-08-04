@@ -44,13 +44,15 @@ Any impediments or stumbling blocks?
 Name: Yuchen Jiang
 
 What have you done since yesterday?
-	- Put points here ...
+	Started writing java code.
 
 What are you planning on doing today?
-	- Put points here ...
+	Completed all my work.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	I met with some difficulties.
+	As soon as I run the app, it either stops or it just
+	keeps blinking. I was trying to solve this.
   
 //Person 5
 
