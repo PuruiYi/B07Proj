@@ -44,13 +44,13 @@ Any impediments or stumbling blocks?
 Name: Yuchen Jiang
 
 What have you done since yesterday?
-	- Put points here ...
+	Completed the design of the pages.
 
 What are you planning on doing today?
-	- Put points here ...
+	Started to write java code.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	No.
   
 //Person 5
 
