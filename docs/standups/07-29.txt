@@ -59,13 +59,13 @@ Any impediments or stumbling blocks?
 Name: Yuchen Jiang
 
 What have you done since yesterday?
-	- Put points here ...
+	No.
 
 What are you planning on doing today?
-	- Put points here ...
+	Learned git and android studio to prepare for my project.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	No.
   
 //Person 5
 
