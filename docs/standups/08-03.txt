@@ -57,10 +57,10 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- Put points here ...
+	- finished my user story and merge my work to Barry's work
 
 What are you planning on doing today?
-	- Put points here ...
-
+	- think about how to merge my work to other members' work in the end
+	
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- deadline's approaching
