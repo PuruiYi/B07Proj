@@ -59,10 +59,10 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- nope
+	- learning android studio/git/firebase online, preparing for the project 
 
 What are you planning on doing today?
-	- learning android studio/git/firebase online, preparing for the project 
+	- start my user story
 
 Any impediments or stumbling blocks?
 	- nope
