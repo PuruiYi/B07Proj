@@ -3,13 +3,13 @@
 Name: Chengye Wu
 
 What have you done since yesterday?
-	- Put points here ...
+	I finished the basic build. And learned some android development process from google.
 
 What are you planning on doing today?
-	- Put points here ...
+	I may not have time to write this Project today. i will continue it tomorrow.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	Not yet.
   
   
 //Person 2
