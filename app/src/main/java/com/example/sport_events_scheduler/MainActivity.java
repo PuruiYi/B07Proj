@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -23,11 +23,12 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    Remote remote;
-    EditText userNameText, passwordText;
-    TextView loginText, registerText;
-    Button login, signup;
-
+    private Remote remote;
+    private EditText userNameText, passwordText;
+    private TextView loginText, signupText, loginHint, signupHint;
+    private ImageView loginPic, signupPic;
+    private Button login, signup;
+    private int duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,17 @@ public class MainActivity extends AppCompatActivity {
         userNameText = findViewById(R.id.username);
         passwordText = findViewById(R.id.password);
         loginText = findViewById(R.id.loginText);
-        registerText = findViewById(R.id.registerText);
+        signupText = findViewById(R.id.registerText);
         login = findViewById(R.id.loginButton);
         signup = findViewById(R.id.signupButton);
+        loginPic = findViewById(R.id.loginPic);
+        loginHint = findViewById(R.id.loginHint);
+        signupPic = findViewById(R.id.signupPic);
+        signupHint = findViewById(R.id.signupHint);
+
+        /** Retrieve and cache the system's default "long" animation time. */
+        duration = getResources().getInteger(
+                android.R.integer.config_longAnimTime);
 
     }
 
@@ -140,19 +149,19 @@ public class MainActivity extends AppCompatActivity {
     /** Display Sign Up button. */
     public void trySignup(View view) {
         clearText();
-        registerText.setVisibility(View.INVISIBLE);
-        loginText.setVisibility(View.VISIBLE);
-        login.setVisibility(View.INVISIBLE);
-        signup.setVisibility(View.VISIBLE);
+        CrossFade.animate(signupHint, loginHint, duration);
+        CrossFade.animate(signupPic, loginPic, duration);
+        CrossFade.animate(loginText, signupText, duration);
+        CrossFade.animate(signup, login, duration);
     }
 
     /** Display Login button. */
     public void tryLogin(View view) {
         clearText();
-        registerText.setVisibility(View.VISIBLE);
-        loginText.setVisibility(View.INVISIBLE);
-        login.setVisibility(View.VISIBLE);
-        signup.setVisibility(View.INVISIBLE);
+        CrossFade.animate(loginHint, signupHint, duration);
+        CrossFade.animate(loginPic, signupPic, duration);
+        CrossFade.animate(signupText, loginText, duration);
+        CrossFade.animate(login, signup, duration);
     }
 
     /** Clear text entered. */
