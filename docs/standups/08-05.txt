@@ -17,13 +17,13 @@ Any impediments or stumbling blocks?
 Name: Jumana Fanous
 
 What have you done since yesterday?
-	- Put points here ...
+	- Optimized code for my user story
 
 What are you planning on doing today?
-	- Put points here ...
+	- Maybe add more features to my user story
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- nope
   
   
 //Person 3
