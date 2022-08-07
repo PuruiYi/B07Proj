@@ -76,7 +76,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
     @Override
     public void onItemClick(Event pendingEvent, int state) {
         if (state == 1){
-            eventRef.child(pendingEvent.getLocation()).push().setValue(pendingEvent);
+            eventRef.child(pendingEvent.getLocation()).child(pendingEvent.getId()).setValue(pendingEvent);
             ref.child(pendingEvent.getId()).removeValue();
             Toast.makeText(getActivity(), "Accept event successfully", Toast.LENGTH_SHORT).show();
         }else if(state == 2){
