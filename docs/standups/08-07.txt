@@ -31,13 +31,13 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- User activity UI rework, navigation bar is used.
 
 What are you planning on doing today?
-	- Put points here ...
+	- Transition between activities.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- No.
   
 //Person 4
 
