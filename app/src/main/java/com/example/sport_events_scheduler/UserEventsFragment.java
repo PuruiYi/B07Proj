@@ -81,7 +81,5 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
         TextView location = view.findViewById(R.id.nameAvenueLabel);
         intent.putExtra("location", location.getText().toString());
         startActivity(intent);
-
-        view.getParent().getParent()
     }
 }

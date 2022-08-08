@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -75,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                             intent = new Intent(getApplicationContext(), AdminActivity2.class);
                         }
                         else {
-                            intent = new Intent(getApplicationContext(), UserActivity2.class);
+                            intent = new Intent(getApplicationContext(), UserActivity.class);
                         }
                         clearText();
                         startActivity(intent);
