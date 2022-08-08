@@ -61,10 +61,10 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- Put points here ...
+	- reviewed my code
 
 What are you planning on doing today?
-	- Put points here ...
+	- improve the current features, working on new features
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- features implemented in activity are different from thaose implemented in fragment, we will spent time unifying those in the future  
