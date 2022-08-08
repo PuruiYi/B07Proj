@@ -7,6 +7,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+<<<<<<< HEAD
+=======
+import android.widget.TextView;
+>>>>>>> master
 import android.widget.Toast;
 
 import com.example.sport_events_scheduler.databinding.ActivityUserBinding;
@@ -18,9 +22,13 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         manageFragment(new UserEventsFragment());
+
+        Toast.makeText(getApplicationContext(), "Welcome, " +
+                        getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
@@ -42,5 +50,11 @@ public class UserActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
+    }
+
+    public void show_my_activities(View view){
+        Toast.makeText(this, "Your reservation will show up here", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), ShowMyActivities.class);
+        startActivity(intent);
     }
 }

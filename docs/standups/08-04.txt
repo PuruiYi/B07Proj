@@ -1,0 +1,70 @@
+We have an online meeting today with Aryan at 17:10. After this meeting, 
+we will have a small meeting of five people. 
+We will discuss the parts that each of us has completed so far and then discuss what needs to be completed next.
+
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	I'm basically done with my part.
+
+What are you planning on doing today?
+	I will try to blend my part with the main code. And need to attend a meeting today.
+
+Any impediments or stumbling blocks?
+	It's mainly some database issues. I need some other people's content to be completed first before I can call some data. Maybe I can try to add some examples to the database and then come to use them.
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- LOGIN & SIGNUP UI REWORK ...
+
+What are you planning on doing today?
+	- ...
+
+Any impediments or stumbling blocks?
+	- ...
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...

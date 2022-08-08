@@ -1,14 +1,15 @@
 <resources>
     <string name="app_name">sport_events_scheduler</string>
-    <string name="username">Enter your username</string>
-    <string name="password">Enter your password</string>
-    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
     <string name="signup">Sign up</string>
-    <string name="avenueName">Enter a name</string>
-    <string name="avenueCapacity">Enter a capacity</string>
+    <string name="avenueName">Name</string>
+    <string name="avenueCapacity">Capacity</string>
     <string name="avenueLocation">Enter a location</string>
-    <string name="avenueStartAt">Enter a start time</string>
-    <string name="avenueEndAt">Enter a end time</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="avenueStartAt">Start</string>
+    <string name="avenueEndAt">End</string>
+    <string name="button_my_activities">My Activities</string>
 </resources>
