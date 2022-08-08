@@ -1,6 +1,8 @@
 package com.example.sport_events_scheduler;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapter.MyViewHolder> {
@@ -43,6 +46,16 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
         holder.eventTypeView.setText(pendingEvent.getName());
         holder.timeView.setText(pendingEvent.getStart() + " - " + pendingEvent.getEnd());
         holder.capacityView.setText(String.valueOf(pendingEvent.getCapacity()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,detailPendingEvent.class);
+                intent.putExtra("DETAIL",  pendingEvents.get(holder.getAdapterPosition()));
+                context.startActivity(intent);
+            }
+        });
+
         holder.optionView.setOnClickListener(v->{
             PopupMenu popupMenu = new PopupMenu(context,holder.optionView);
             popupMenu.inflate(R.menu.option_menu);
