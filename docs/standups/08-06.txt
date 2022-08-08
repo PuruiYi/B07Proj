@@ -57,10 +57,11 @@ Any impediments or stumbling blocks?
 Name: Purui Yi
 
 What have you done since yesterday?
-	- Put points here ...
+	- work on admin feature: edit pending events 
 
 What are you planning on doing today?
-	- Put points here ...
+	- thinking about more features to added on
+	- continue to work on current feature
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- nope
