@@ -12,14 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class PendingEventFragment extends Fragment implements PendingEventAdapter.OnItemClickListener {
 
@@ -50,7 +48,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         pendingEvents = new ArrayList<>();
         pendingEventAdapter = new PendingEventAdapter(this.getContext(),pendingEvents,this);
-
+        recyclerView.setAdapter(pendingEventAdapter);
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,7 +56,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
                 pendingEvents.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                         Event pendingEvent = dataSnapshot.getValue(Event.class);
-                        recyclerView.setAdapter(pendingEventAdapter);
+
                         pendingEvents.add(pendingEvent);
 
                 }
