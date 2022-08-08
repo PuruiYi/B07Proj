@@ -75,4 +75,10 @@ public class UserActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void show_my_activities(View view){
+        Toast.makeText(this, "Your reservation will show up here", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), ShowMyActivities.class);
+        startActivity(intent);
+    }
 }

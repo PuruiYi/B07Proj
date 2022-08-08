@@ -9,4 +9,5 @@
     <string name="avenueLocation">Enter a location</string>
     <string name="avenueStartAt">Start</string>
     <string name="avenueEndAt">End</string>
+    <string name="button_my_activities">My Activities</string>
 </resources>
