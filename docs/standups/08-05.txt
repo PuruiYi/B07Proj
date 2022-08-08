@@ -3,13 +3,17 @@
 Name: Chengye Wu
 
 What have you done since yesterday?
-	- Put points here ...
+	- Barry created three buttons on the activity page, but only one was displayed. When I tried to add another button, 
+	only one button was displayed as well. I googled it and knew it was overlapping, but didn't know how to change it, 
+	and then understood it after browsing to the LinearLayout layout.
 
 What are you planning on doing today?
-	- Put points here ...
+	- I am going to merge my code with the master trunk. After the successful integration, 
+	I would like to improve some things. For example, UI design.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- I have tried many methods. But they all change the original pattern. 
+	So I can only add a button under each item, and through this button I can go to the user story 4 page.
   
   
 //Person 2
