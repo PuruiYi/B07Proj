@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             intent = new Intent(getApplicationContext(), AdminActivity2.class);
                         }
                         else {
-                            intent = new Intent(getApplicationContext(), UserActivity.class);
+                            intent = new Intent(getApplicationContext(), UserActivity2.class);
                         }
                         clearText();
                         startActivity(intent);

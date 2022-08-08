@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sport_events_scheduler">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,20 +16,20 @@
         android:theme="@style/Theme.Sport_events_scheduler"
         tools:targetApi="31">
         <activity
+            android:name=".UserActivity2"
+            android:exported="false" />
+        <activity
             android:name=".AdminActivity2"
             android:exported="false" />
         <activity
             android:name=".AddNewEvent"
+            android:theme="@style/DialogActivity"
             android:exported="false" />
         <activity
             android:name=".DisplayActivitiesAtVenue"
-            android:parentActivityName=".UserActivity">
+            android:theme="@style/DisplayActivity"
+            android:exported="false"/>
 
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserActivity" />
-        </activity>
         <activity
             android:name=".AddNewVenue"
             android:parentActivityName=".AdminActivity">
@@ -66,5 +68,4 @@
         </activity>
     </application>
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 </manifest>

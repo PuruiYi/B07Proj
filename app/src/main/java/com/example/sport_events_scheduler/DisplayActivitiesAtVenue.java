@@ -7,7 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +34,15 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_activities_at_avenue);
+
+        /** Set display window size. */
+        /*
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        getWindow().setLayout(width, (int) (height * 0.9));*/
 
 
         /** Initializer. */
@@ -70,6 +84,13 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AddNewEvent.class);
         intent.putExtra("location", parent.getStringExtra("location"));
         startActivity(intent);
+    }
+
+    public void PopUpaddNewActivity(View view) {
+        PopupWindow window = new PopupWindow(10,10);
+        if (!window.isShowing())
+            Toast.makeText(this.getApplicationContext(), "not showing", Toast.LENGTH_SHORT).show();
+
     }
 
 }
