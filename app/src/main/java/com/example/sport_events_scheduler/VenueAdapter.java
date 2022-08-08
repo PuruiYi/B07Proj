@@ -20,6 +20,12 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.MyViewHolder
     ArrayList<String> venues;
     VenueOnClickListener listener;
 
+    public VenueAdapter(Context context, ArrayList<String> venues) {
+        this.context = context;
+        this.venues = venues;
+        this.listener = null;
+    }
+
     public VenueAdapter(Context context, ArrayList<String> venues, VenueOnClickListener listener) {
         this.context = context;
         this.venues = venues;
@@ -39,13 +45,14 @@ public class VenueAdapter extends RecyclerView.Adapter<VenueAdapter.MyViewHolder
         String avenue = venues.get(position);
         holder.name.setText(avenue);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.displayActivity(view);
-            }
-        });
-
+        if(listener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.displayActivity(view);
+                }
+            });
+        }
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.example.sport_events_scheduler;
 
-import android.content.Intent;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,8 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,13 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
+public class AdminAddVenueFragment extends Fragment {
 
     View view;
     DatabaseReference ref;
     RecyclerView recyclerView;
     VenueAdapter adapter;
     ArrayList<String> venues;
+    FloatingActionButton addVenueBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,18 +41,18 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /** Inflate the layout for this fragment. */
-        view = inflater.inflate(R.layout.fragment_user_events, container, false);
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_admin_add_venue, container, false);
 
         /** Initializer. */
         Remote remote = new Remote();
         ref = remote.getEventRef();
-        recyclerView = view.findViewById(R.id.userVenueList);
+        addVenueBtn = view.findViewById(R.id.addVenue);
+        recyclerView = view.findViewById(R.id.adminVenueList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
         venues = new ArrayList<>();
-        adapter = new VenueAdapter(this.getContext(), venues, this);
+        adapter = new VenueAdapter(this.getContext(), venues);
         recyclerView.setAdapter(adapter);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -69,14 +74,34 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
             }
         });
 
+        addVenueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addVenue();
+            }
+        });
+
+
         return view;
     }
 
-    @Override
-    public void displayActivity(View view) {
-        Intent intent = new Intent(this.getActivity(), DisplayActivitiesAtVenue.class);
-        TextView location = view.findViewById(R.id.nameAvenueLabel);
-        intent.putExtra("location", location.getText().toString());
-        startActivity(intent);
+    private void addVenue() {
+        /** Initializer. */
+        Dialog dialog = new Dialog(this.getContext());
+        dialog.setContentView(R.layout.add_venue);
+        Button btn = dialog.findViewById(R.id.addVenueAddBtn);
+        EditText nameText = dialog.findViewById(R.id.addVenueNameText);
+        /** Remote. */
+        Remote remote = new Remote();
+        DatabaseReference eventref = remote.getEventRef();
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = nameText.getText().toString();
+                eventref.child(name).setValue("");
+            }
+        });
+        dialog.show();
     }
 }

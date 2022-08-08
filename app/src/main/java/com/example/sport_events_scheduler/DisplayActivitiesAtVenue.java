@@ -86,11 +86,4 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void PopUpaddNewActivity(View view) {
-        PopupWindow window = new PopupWindow(10,10);
-        if (!window.isShowing())
-            Toast.makeText(this.getApplicationContext(), "not showing", Toast.LENGTH_SHORT).show();
-
-    }
-
 }

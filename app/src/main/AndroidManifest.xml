@@ -19,7 +19,7 @@
             android:name=".UserActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity2"
+            android:name=".AdminActivity"
             android:exported="false" />
         <activity
             android:name=".ShowMyActivities"
@@ -31,18 +31,6 @@
         <activity
             android:name=".DisplayActivitiesAtVenue"
             android:theme="@style/DisplayActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".AddNewVenue"
-            android:parentActivityName=".AdminActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".AdminActivity" />
-        </activity>
-        <activity
-            android:name=".AdminActivity"
             android:exported="false"/>
         <activity
             android:name=".MainActivity"

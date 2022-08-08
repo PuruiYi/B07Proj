@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         /** Start the User / Admin Activity. */
                         Intent intent;
                         if (admin) {
-                            intent = new Intent(getApplicationContext(), AdminActivity2.class);
+                            intent = new Intent(getApplicationContext(), AdminActivity.class);
                         }
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
