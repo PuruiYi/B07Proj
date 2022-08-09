@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +60,7 @@ public class AddVenueDialogFragment extends DialogFragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if (addNewVenue(venueNameText))
+               if (addNewVenue())
                    dismiss();
             }
         });
@@ -74,14 +75,14 @@ public class AddVenueDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    private boolean addNewVenue(EditText nameText) {
-        String name = nameText.getText().toString();
+    private boolean addNewVenue() {
+        String name = venueNameText.getText().toString();
 
-        if (!isValidName(nameText, name))
+        if (!isValidName(venueNameText, name))
             return false;
 
         /** Clear errors. */
-        nameText.setError(null);
+        venueNameText.setError(null);
 
         Query checkVenue = eventRef.orderByKey().equalTo(name);
         checkVenue.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,11 +90,11 @@ public class AddVenueDialogFragment extends DialogFragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()) {
-                    nameText.setError("Venue provided exists");
-                    nameText.requestFocus();
+                    venueNameText.setError("Venue provided exists");
+                    venueNameText.requestFocus();
                 }
                 else {
-                    nameText.setError(null);
+                    venueNameText.setError(null);
                     eventRef.child(name).setValue("");
                 }
             }
@@ -104,9 +105,9 @@ public class AddVenueDialogFragment extends DialogFragment {
             }
         });
 
-        nameText.setText("");
+        venueNameText.setText("");
 
-        return nameText.getError() == null ? true : false;
+        return venueNameText.getError() == null ? true : false;
     }
 
     /** Validate venue name provided by admins. */

@@ -2,6 +2,7 @@ package com.example.sport_events_scheduler;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -81,9 +82,8 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
     }
 
     public void addNewActivity(View view) {
-        Intent intent = new Intent(getApplicationContext(), AddNewEvent.class);
-        intent.putExtra("location", parent.getStringExtra("location"));
-        startActivity(intent);
+        DialogFragment dialog = new AddEventDialogFragment(parent.getStringExtra("location"));
+        dialog.show(getSupportFragmentManager(), "AddEventDialog");
     }
 
 }
