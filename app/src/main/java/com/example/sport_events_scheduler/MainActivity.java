@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView loginText, signupText, loginHint, signupHint;
     private ImageView loginPic, signupPic;
     private Button login, signup;
+    private CheckBox asAdmin;
     private int duration;
 
     @Override
@@ -43,10 +46,18 @@ public class MainActivity extends AppCompatActivity {
         signupText = findViewById(R.id.registerText);
         login = findViewById(R.id.loginButton);
         signup = findViewById(R.id.signupButton);
+        asAdmin = findViewById(R.id.asAdmin);
         loginPic = findViewById(R.id.loginPic);
         loginHint = findViewById(R.id.loginHint);
         signupPic = findViewById(R.id.signupPic);
         signupHint = findViewById(R.id.signupHint);
+
+        asAdmin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                asAdmin.setError(null);
+            }
+        });
 
         /** Retrieve and cache the system's default "long" animation time. */
         duration = getResources().getInteger(
@@ -75,11 +86,16 @@ public class MainActivity extends AppCompatActivity {
                         passwordText.setError(null);
 
                         /** User or Admin. */
-                        final boolean admin = snapshot.child(username).child("admin").getValue(boolean.class);
+                        final boolean isAdmin = snapshot.child(username).child("admin").getValue(boolean.class);
                         /** Start the User / Admin Activity. */
                         Intent intent;
-                        if (admin) {
+                        if (isAdmin && asAdmin.isChecked()) {
                             intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        }
+                        else if (!isAdmin && asAdmin.isChecked()) {
+                            asAdmin.setError("This user is not an admin", null);
+                            asAdmin.requestFocus();
+                            return;
                         }
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
@@ -120,7 +136,14 @@ public class MainActivity extends AppCompatActivity {
             passwordText.setError(null);
             /** Writing to a realtime database. */
             DatabaseReference ref = remote.getAccountRef();
-            User user = new User(username, password);
+            /** Sign up as admin? */
+            Account user;
+            if (asAdmin.isChecked()) {
+                user = new Admin(username, password);
+            }
+            else {
+                user = new User(username, password);
+            }
             ref.child(username).setValue(user);
             Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
         }
@@ -172,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearText() {
         userNameText.setText("");
         passwordText.setText("");
+        asAdmin.setChecked(false);
     }
 
 

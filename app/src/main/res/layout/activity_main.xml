@@ -108,10 +108,11 @@
         android:onClick="tryLogin"
         android:text="Already have an account? Login"
         android:textAlignment="center"
+        android:textColor="@color/purple_500"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -154,10 +155,11 @@
         android:onClick="trySignup"
         android:text="Don't have an account? Register"
         android:textAlignment="center"
+        android:textColor="@color/purple_500"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -176,6 +178,18 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/welcome" />
 
+    <CheckBox
+        android:id="@+id/asAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:focusableInTouchMode="true"
+        android:text="As Admin"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
