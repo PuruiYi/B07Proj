@@ -11,7 +11,7 @@
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_admin2.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_display_activities_at_avenue.xml" value="0.25" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_login.xml" value="0.43046875" />
-        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_main.xml" value="0.43046875" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_new_avenue.xml" value="0.41953125" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_new_event.xml" value="0.43046875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_new_venue.xml" value="0.21736111111111112" />
@@ -51,10 +51,6 @@
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_new_avenue.xml" value="0.22" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_user.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_user.xml" value="0.11822916666666666" />
-        <entry key="app/src/main/res/menu/bottom_nav_bar.xml" value="0.11822916666666666" />
-        <entry key="app/src/main/res/menu/option_menu.xml" value="0.11822916666666666" />
-        <entry key="app/src/main/res/menu/user_bottom_nav_bar.xml" value="0.11822916666666666" />
       </map>
     </option>
   </component>

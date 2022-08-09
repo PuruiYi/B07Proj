@@ -2,7 +2,6 @@ package com.example.sport_events_scheduler;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,7 +50,7 @@ public class AddEventDialogFragment extends DialogFragment {
         startText = view.findViewById(R.id.startVenue);
         endText = view.findViewById(R.id.endVenue);
         addBtn = view.findViewById(R.id.addButton);
-
+        closeBtn = view.findViewById(R.id.addEventCloseBtn);
         // Builder setup.
         builder.setView(view);
 
@@ -66,13 +61,13 @@ public class AddEventDialogFragment extends DialogFragment {
                    dismiss();
             }
         });
-        /*
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
-        });*/
+        });
 
         return builder.create();
     }
