@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,6 +122,28 @@ public class AddEventDialogFragment extends DialogFragment {
                 startText.setText("");
                 endText.setText("");
 
+                TimePickerDialog startTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        timeText.setError(null);
+
+                        Calendar calendar = Calendar.getInstance();
+                        start_hour = hour;
+                        start_min = minute;
+                        calendar.set(Calendar.HOUR_OF_DAY, hour);
+                        calendar.set(Calendar.MINUTE, minute);
+                        if (calendar.before(Calendar.getInstance()))
+                            Toast.makeText(getActivity(), "The start time has already passed.", Toast.LENGTH_LONG).show();
+                        else {
+                            String startTime = new SimpleDateFormat("HH:mm").format(calendar.getTime());
+                            startText.setText(startTime);
+                            timeText.setText(startTime);
+                        }
+                        timeText.setText(timeText.getText().toString() + " - ");
+                    }
+                },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
+                startTimePicker.setTitle("Select a start time for the event.");
+
                 TimePickerDialog endTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
@@ -146,29 +169,15 @@ public class AddEventDialogFragment extends DialogFragment {
                     }
                 },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
                 endTimePicker.setTitle("Select a end time for the event.");
-                endTimePicker.show();
 
-                TimePickerDialog startTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        timeText.setError(null);
-
-                        Calendar calendar = Calendar.getInstance();
-                        start_hour = hour;
-                        start_min = minute;
-                        calendar.set(Calendar.HOUR_OF_DAY, hour);
-                        calendar.set(Calendar.MINUTE, minute);
-                        if (calendar.before(Calendar.getInstance()))
-                            Toast.makeText(getActivity(), "The start time has already passed.", Toast.LENGTH_LONG).show();
-                        else {
-                            String startTime = new SimpleDateFormat("HH:mm").format(calendar.getTime());
-                            startText.setText(startTime);
-                            timeText.setText(startTime + " - ");
-                        }
-                    }
-                },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
-                startTimePicker.setTitle("Select a start time for the event.");
                 startTimePicker.show();
+                startTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        endTimePicker.show();
+                    }
+                });
+
             }
         });
 
