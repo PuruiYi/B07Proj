@@ -15,31 +15,37 @@ import com.example.sport_events_scheduler.databinding.ActivityUserBinding;
 public class UserActivity extends AppCompatActivity {
 
     ActivityUserBinding binding;
+    String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        currUser = getIntent().getStringExtra("user");
 
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         manageFragment(new UserEventsFragment());
 
         Toast.makeText(getApplicationContext(), "Welcome, " +
-                        getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
+                getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
-                case R.id.user_nav_upcomingEvents:
-                    manageFragment(new UserUpcomingEventsFragment());
-                    break;
-
                 case R.id.user_nav_events:
                     manageFragment(new UserEventsFragment());
                     break;
 
                 case R.id.user_nav_schedule:
-                    manageFragment(new UserScheduleFragment());
+
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("user", currUser);
+//                    UserScheduleFragment fragment = new UserScheduleFragment(currUser);
+//                    fragment.setArguments(bundle);
+
+
+                    manageFragment(new UserScheduleFragment(currUser));
                     break;
             }
             return true;
