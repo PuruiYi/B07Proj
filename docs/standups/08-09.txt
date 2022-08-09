@@ -31,13 +31,16 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- User-friendly features:
+	1. DatePickerDialog pops up when select date.
+	2. TimePickerDialog pops up when select time.
+	3. date and time validation.
 
 What are you planning on doing today?
 	- Put points here ...
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope.
   
 //Person 4
 
