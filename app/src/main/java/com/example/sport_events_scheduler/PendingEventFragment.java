@@ -38,6 +38,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pending_event, container, false);
+        getActivity().setTitle("View Pending Events");
 
         recyclerView = view.findViewById(R.id.pendingEventList);
         Remote remote = new Remote();
@@ -71,10 +72,12 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
         return view;
     }
 
+
+
     @Override
     public void onItemClick(Event pendingEvent, int state) {
         if (state == 1){
-            eventRef.child(pendingEvent.getLocation()).push().setValue(pendingEvent);
+            eventRef.child(pendingEvent.getLocation()).child(pendingEvent.getId()).setValue(pendingEvent);
             ref.child(pendingEvent.getId()).removeValue();
             Toast.makeText(getActivity(), "Accept event successfully", Toast.LENGTH_SHORT).show();
         }else if(state == 2){
