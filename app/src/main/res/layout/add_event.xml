@@ -75,7 +75,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:drawableStart="@drawable/timetable"
+            android:drawableStart="@drawable/clock"
             android:drawablePadding="10dp"
             android:focusable="true"
             android:focusableInTouchMode="true"

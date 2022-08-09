@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,8 +61,10 @@ public class AddVenueDialogFragment extends DialogFragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if (addNewVenue())
+               if (addNewVenue()) {
                    dismiss();
+                   Toast.makeText(getActivity(), "New Venue is added.", Toast.LENGTH_LONG).show();
+               }
             }
         });
 
