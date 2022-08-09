@@ -61,10 +61,7 @@ public class AddVenueDialogFragment extends DialogFragment {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if (addNewVenue()) {
-                   dismiss();
-                   Toast.makeText(getActivity(), "New Venue is added.", Toast.LENGTH_LONG).show();
-               }
+               addNewVenue();
             }
         });
 
@@ -78,14 +75,11 @@ public class AddVenueDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    private boolean addNewVenue() {
+    private void addNewVenue() {
         String name = venueNameText.getText().toString();
 
-        if (!isValidName(venueNameText, name))
-            return false;
-
-        /** Clear errors. */
-        venueNameText.setError(null);
+        if (!isValidName(name))
+            return;
 
         Query checkVenue = eventRef.orderByKey().equalTo(name);
         checkVenue.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,6 +93,8 @@ public class AddVenueDialogFragment extends DialogFragment {
                 else {
                     venueNameText.setError(null);
                     eventRef.child(name).setValue("");
+                    venueNameText.setText("");
+                    getDialog().dismiss();
                 }
             }
 
@@ -107,19 +103,15 @@ public class AddVenueDialogFragment extends DialogFragment {
 
             }
         });
-
-        venueNameText.setText("");
-
-        return venueNameText.getError() == null ? true : false;
     }
 
     /** Validate venue name provided by admins. */
-    private boolean isValidName(EditText nameText, String name) {
+    private boolean isValidName(String name) {
         Pattern pattern = Pattern.compile("\\s*");
         Matcher usernameM = pattern.matcher(name);
         if (usernameM.matches()) {
-            nameText.setError("Name cannot be empty.");
-            nameText.requestFocus();
+            venueNameText.setError("Name cannot be empty.");
+            venueNameText.requestFocus();
             return false;
         }
         return true;

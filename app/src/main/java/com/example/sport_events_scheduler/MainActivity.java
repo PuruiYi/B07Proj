@@ -128,27 +128,45 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
-        
-        /** Validate inputs. */
-        if (areValidInputs(username, password)) {
-            /** Clear errors. */
-            userNameText.setError(null);
-            passwordText.setError(null);
-            /** Writing to a realtime database. */
-            DatabaseReference ref = remote.getAccountRef();
-            /** Sign up as admin? */
-            Account user;
-            if (asAdmin.isChecked()) {
-                user = new Admin(username, password);
+        /** Database. */
+        DatabaseReference ref = remote.getAccountRef();
+        /** Validate if the current username has been registered. */
+        Query checkUsername = ref.orderByKey().equalTo(username);
+        checkUsername.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                /** The username has been registered. */
+                if (snapshot.exists()) {
+                    userNameText.setError("The username has been registered");
+                    userNameText.requestFocus();
+                }
+                /** Not yet. */
+                else{
+                    /** Validate inputs. */
+                    if (userNameText.getError() == null && areValidInputs(username, password)) {
+                        /** Clear errors. */
+                        userNameText.setError(null);
+                        passwordText.setError(null);
+                        /** Sign up as admin? */
+                        Account user;
+                        if (asAdmin.isChecked()) {
+                            user = new Admin(username, password);
+                        }
+                        else {
+                            user = new User(username, password);
+                        }
+                        ref.child(username).setValue(user);
+                        Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                    clearText();
+                }
             }
-            else {
-                user = new User(username, password);
-            }
-            ref.child(username).setValue(user);
-            Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
-        }
 
-        clearText();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     /** Validate username and password provided by users. */
@@ -194,7 +212,9 @@ public class MainActivity extends AppCompatActivity {
     /** Clear text entered. */
     private void clearText() {
         userNameText.setText("");
+        userNameText.setError(null);
         passwordText.setText("");
+        passwordText.setError(null);
         asAdmin.setChecked(false);
     }
 
