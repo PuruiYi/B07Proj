@@ -35,6 +35,12 @@ What have you done since yesterday?
 	1. DatePickerDialog pops up when select date.
 	2. TimePickerDialog pops up when select time.
 	3. date and time validation.
+	
+	- TA-friendly features:
+	1. Sign up as an admin by checking the box. 
+	2. Login as an admin by checking the box. 
+		a. Admin accounts can login as either user or admin. 
+		b. Errors occur when user accounts try to login as admin. Uncheck the box to login as user will be solve it.
 
 What are you planning on doing today?
 	- Put points here ...
