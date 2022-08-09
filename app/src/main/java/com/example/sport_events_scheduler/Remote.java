@@ -7,6 +7,10 @@ public class Remote {
 
     private FirebaseDatabase remote;
 
+    public FirebaseDatabase getRemote() {
+        return remote;
+    }
+
     public Remote() {
         remote = FirebaseDatabase.getInstance("https://sport-events-scheduler-default-rtdb.firebaseio.com/");
     }
@@ -19,11 +23,9 @@ public class Remote {
         return remote.getReference("event");
     }
 
-    public DatabaseReference getVenueRef(String venue) {
-        return remote.getReference("event/" + venue);
+    public DatabaseReference getAvenueRef(String given) {
+        return remote.getReference("event/" + given);
     }
+    public DatabaseReference getPendingEventRef(){ return remote.getReference("pendingEvent");}
 
-    public DatabaseReference getUserRef(String user) {
-        return remote.getReference("account/" + user);
-    }
 }

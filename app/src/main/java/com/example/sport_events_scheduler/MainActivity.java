@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -22,30 +23,39 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
-    Remote remote;
-    EditText userNameText, passwordText;
-    TextView loginText, registerText;
-    Button login, signup;
-
+    private Remote remote;
+    private EditText userNameText, passwordText;
+    private TextView loginText, signupText, loginHint, signupHint;
+    private ImageView loginPic, signupPic;
+    private Button login, signup;
+    private int duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Firebase realtime database reference. */
+        /** Initializer. */
         remote = new Remote();
-        userNameText = (EditText) findViewById(R.id.username);
-        passwordText = (EditText) findViewById(R.id.password);
-        loginText = (TextView) findViewById(R.id.loginText);
-        registerText = (TextView) findViewById(R.id.registerText);
-        login = (Button) findViewById(R.id.loginButton);
-        signup = (Button) findViewById(R.id.signupButton);
+        userNameText = findViewById(R.id.username);
+        passwordText = findViewById(R.id.password);
+        loginText = findViewById(R.id.loginText);
+        signupText = findViewById(R.id.registerText);
+        login = findViewById(R.id.loginButton);
+        signup = findViewById(R.id.signupButton);
+        loginPic = findViewById(R.id.loginPic);
+        loginHint = findViewById(R.id.loginHint);
+        signupPic = findViewById(R.id.signupPic);
+        signupHint = findViewById(R.id.signupHint);
+
+        /** Retrieve and cache the system's default "long" animation time. */
+        duration = getResources().getInteger(
+                android.R.integer.config_longAnimTime);
+
     }
 
     /** Called when the user taps the Log in button */
     public void login(View view) {
-
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
 
@@ -74,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
                         else {
                             intent = new Intent(getApplicationContext(), UserActivity.class);
                         }
-                        clearText();
+                        /** Pass username. */
                         intent.putExtra("user", username);
+                        clearText();
                         startActivity(intent);
                     }
                     else {
@@ -101,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
+        
         /** Validate inputs. */
         if (areValidInputs(username, password)) {
             /** Clear errors. */
@@ -110,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             DatabaseReference ref = remote.getAccountRef();
             User user = new User(username, password);
             ref.child(username).setValue(user);
+            Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
         }
 
         clearText();
@@ -136,19 +149,23 @@ public class MainActivity extends AppCompatActivity {
     /** Display Sign Up button. */
     public void trySignup(View view) {
         clearText();
-        registerText.setVisibility(View.INVISIBLE);
-        loginText.setVisibility(View.VISIBLE);
-        login.setVisibility(View.INVISIBLE);
-        signup.setVisibility(View.VISIBLE);
+
+        CrossFade.animate(signupHint, loginHint, duration);
+        CrossFade.animate(signupPic, loginPic, duration);
+        CrossFade.animate(loginText, signupText, duration);
+        CrossFade.animate(signup, login, duration);
+
     }
 
     /** Display Login button. */
     public void tryLogin(View view) {
         clearText();
-        registerText.setVisibility(View.VISIBLE);
-        loginText.setVisibility(View.INVISIBLE);
-        login.setVisibility(View.VISIBLE);
-        signup.setVisibility(View.INVISIBLE);
+
+        CrossFade.animate(loginHint, signupHint, duration);
+        CrossFade.animate(loginPic, signupPic, duration);
+        CrossFade.animate(signupText, loginText, duration);
+        CrossFade.animate(login, signup, duration);
+
     }
 
     /** Clear text entered. */
@@ -156,4 +173,7 @@ public class MainActivity extends AppCompatActivity {
         userNameText.setText("");
         passwordText.setText("");
     }
+
+
+
 }

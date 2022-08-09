@@ -1,75 +1,61 @@
 package com.example.sport_events_scheduler;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import java.util.ArrayList;
+import com.example.sport_events_scheduler.databinding.ActivityUserBinding;
 
 public class UserActivity extends AppCompatActivity {
 
-    Intent parent;
-    DatabaseReference ref;
-    RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
+    ActivityUserBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
 
+        binding = ActivityUserBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        manageFragment(new UserEventsFragment());
 
-        /** Initializer. */
-        Remote remote = new Remote();
-        parent = getIntent();
-        ref = remote.getEventRef();
-        recyclerView = findViewById(R.id.avenueList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Toast.makeText(getApplicationContext(), "Welcome, " +
+                        getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
 
-        venues = new ArrayList<>();
-        adapter = new VenueAdapter(this, venues);
-        recyclerView.setAdapter(adapter);
+        binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                venues.clear();
+            switch (item.getItemId()) {
+                case R.id.user_nav_upcomingEvents:
+                    manageFragment(new UserUpcomingEventsFragment());
+                    break;
 
-                for (DataSnapshot venueSnapshot : snapshot.getChildren())
-                    venues.add(venueSnapshot.getKey());
+                case R.id.user_nav_events:
+                    manageFragment(new UserEventsFragment());
+                    break;
 
-                adapter.notifyDataSetChanged();
+                case R.id.user_nav_schedule:
+                    manageFragment(new UserScheduleFragment());
+                    break;
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            return true;
         });
-
-
     }
 
-    public void showActivities(View view) {
+    private void manageFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
+    }
 
-        Intent intent = new Intent(getApplicationContext(), DisplayActivitiesAtVenue.class);
-        TextView location = (TextView) view.findViewById(R.id.nameAvenueLabel);
-        intent.putExtra("location", location.getText().toString());
-        intent.putExtra("user", parent.getStringExtra("user"));
+    public void show_my_activities(View view){
+        Toast.makeText(this, "Your reservation will show up here", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), ShowMyActivities.class);
         startActivity(intent);
-
     }
 }
