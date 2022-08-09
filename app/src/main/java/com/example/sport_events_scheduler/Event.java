@@ -11,6 +11,7 @@ public class Event implements Parcelable {
     private String name;
     private int capacity;
     private int joined;
+    private String date;
     private String start;
     private String end;
     private String location;
@@ -22,6 +23,17 @@ public class Event implements Parcelable {
         this.name = name;
         this.capacity = capacity;
         this.joined = joined;
+        this.start = start;
+        this.end = end;
+        this.location = location;
+    }
+
+    public Event(String id, String name, int capacity, int joined, String date, String start, String end, String location) {
+        this.id = id;
+        this.name = name;
+        this.capacity = capacity;
+        this.joined = joined;
+        this.date = date;
         this.start = start;
         this.end = end;
         this.location = location;
@@ -62,6 +74,8 @@ public class Event implements Parcelable {
     public int getJoined() {
         return joined;
     }
+
+    public String getDate() { return date; }
 
     public String getStart() {
         return start;
