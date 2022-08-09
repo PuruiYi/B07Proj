@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Events"
+        android:icon="@drawable/ic_baseline_call_to_action_24"
+        android:id="@+id/event"/>
+    <item android:title="Pending Events"
+        android:icon="@drawable/ic_baseline_pending_actions_24"
+        android:id="@+id/pendingEvent"/>
+    <item android:title="Venue"
+        android:icon="@drawable/ic_baseline_place_24"
+        android:id="@+id/account"/>
+</menu>
