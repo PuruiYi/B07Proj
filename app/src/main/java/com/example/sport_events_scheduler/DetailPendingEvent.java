@@ -36,7 +36,11 @@ public class DetailPendingEvent extends AppCompatActivity {
         binding = ActivityDetailPendingEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Remote remote = new Remote();
+        DatabaseReference ref = remote.getPendingEventRef();
+        DatabaseReference eventRef = remote.getEventRef();
+
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Editing Pending Event");
 
         detailedEvent = getIntent().getParcelableExtra("DETAIL");
@@ -62,6 +66,11 @@ public class DetailPendingEvent extends AppCompatActivity {
         binding.detailAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Event modifiedEvent = getModifiedData();
+                updateData(modifiedEvent);
+                eventRef.child(modifiedEvent.getLocation()).child(modifiedEvent.getId()).setValue(modifiedEvent);
+                ref.child(modifiedEvent.getId()).removeValue();
+                Toast.makeText(DetailPendingEvent.this, "Accept event successfully", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -69,27 +78,21 @@ public class DetailPendingEvent extends AppCompatActivity {
         binding.detailModify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String m_venue = binding.detailVenue.getText().toString();
-                String m_name = binding.detailName.getText().toString();
-                int m_capacity = Integer.parseInt(binding.detailCapacity.getText().toString());
-                String m_startTime = binding.detailStartTime.getText().toString();
-                String m_endTime = binding.detailEndTime.getText().toString();
-
-                Event modifiedEvent = new Event(id,m_name,m_capacity,joined,m_startTime,m_endTime,m_venue);
+                Event modifiedEvent = getModifiedData();
                 updateData(modifiedEvent);
             }
         });
 
     }
 
-//    private Event getModifiedData(){
-//        String m_venue = binding.detailVenue.getText().toString();
-//        String m_name = binding.detailName.getText().toString();
-//        int m_capacity = Integer.parseInt(binding.detailCapacity.getText().toString());
-//        String m_startTime = binding.detailStartTime.getText().toString();
-//        String m_endTime = binding.detailEndTime.getText().toString();
-//        return new Event(id,m_name,m_capacity,joined,m_startTime,m_endTime,m_venue);
-//    }
+    private Event getModifiedData(){
+        String m_venue = binding.detailVenue.getText().toString();
+        String m_name = binding.detailName.getText().toString();
+        int m_capacity = Integer.parseInt(binding.detailCapacity.getText().toString());
+        String m_startTime = binding.detailStartTime.getText().toString();
+        String m_endTime = binding.detailEndTime.getText().toString();
+        return new Event(id,m_name,m_capacity,joined,m_startTime,m_endTime,m_venue);
+    }
 
     private void updateData(Event modifiedEvent) {
         HashMap detailEventList = new HashMap();
@@ -106,12 +109,6 @@ public class DetailPendingEvent extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task task) {
                 if(task.isSuccessful()){
-//                    startActivity();
-//                    binding.detailVenue.setText(m_venue);
-//                    binding.detailName.setText(m_name);
-//                    binding.detailCapacity.setText(String.valueOf(m_capacity));
-//                    binding.detailStartTime.setText(m_startTime);
-//                    binding.detailEndTime.setText(m_endTime);
                     onBackPressed();
                     Toast.makeText(DetailPendingEvent.this,"pending event modified",Toast.LENGTH_SHORT).show();
                 }else{

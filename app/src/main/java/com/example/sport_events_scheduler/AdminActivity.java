@@ -7,16 +7,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.sport_events_scheduler.databinding.ActivityAdmin2Binding;
+import com.example.sport_events_scheduler.databinding.ActivityAdminBinding;
 
 public class AdminActivity extends AppCompatActivity {
 
-    ActivityAdmin2Binding binding;
+    ActivityAdminBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAdmin2Binding.inflate(getLayoutInflater());
+        binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         manageFragment(new EventFragment());
 
