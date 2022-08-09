@@ -31,13 +31,15 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- User-friendly features:
+	1. Users can close the window by clicking close button when schedule new events.
+	2. Admins can close the window by clicking close button when add new venues.
 
 What are you planning on doing today?
-	- Put points here ...
+	- Schedule new events UI & functionalities rework.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- Nope.
   
 //Person 4
 
