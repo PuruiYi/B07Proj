@@ -36,7 +36,7 @@ public class DetailPendingEvent extends AppCompatActivity {
         binding = ActivityDetailPendingEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Editing Pending Event");
 
         detailedEvent = getIntent().getParcelableExtra("DETAIL");

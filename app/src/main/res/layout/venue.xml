@@ -33,13 +33,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/my_activities"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="show_my_activities"
-            android:text="@string/button_my_activities" />
-
 
     </LinearLayout>
 

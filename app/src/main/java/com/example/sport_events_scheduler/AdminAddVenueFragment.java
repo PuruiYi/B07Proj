@@ -4,7 +4,10 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,9 +23,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminAddVenueFragment extends Fragment {
 
@@ -77,7 +83,7 @@ public class AdminAddVenueFragment extends Fragment {
         addVenueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addVenue();
+                openDialog();
             }
         });
 
@@ -85,23 +91,9 @@ public class AdminAddVenueFragment extends Fragment {
         return view;
     }
 
-    private void addVenue() {
+    private void openDialog() {
         /** Initializer. */
-        Dialog dialog = new Dialog(this.getContext());
-        dialog.setContentView(R.layout.add_venue);
-        Button btn = dialog.findViewById(R.id.addVenueAddBtn);
-        EditText nameText = dialog.findViewById(R.id.addVenueNameText);
-        /** Remote. */
-        Remote remote = new Remote();
-        DatabaseReference eventref = remote.getEventRef();
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = nameText.getText().toString();
-                eventref.child(name).setValue("");
-            }
-        });
-        dialog.show();
+        DialogFragment dialog = new AddVenueDialogFragment();
+        dialog.show(getChildFragmentManager(), "AddVenueDialog");
     }
 }
