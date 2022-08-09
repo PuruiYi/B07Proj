@@ -7,6 +7,9 @@
     <string name="avenueName">Name</string>
     <string name="avenueCapacity">Capacity</string>
     <string name="avenueLocation">Enter a location</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="avenueStartAt">Start</string>
     <string name="avenueEndAt">End</string>
+    <string name="button_my_activities">My Activities</string>
 </resources>

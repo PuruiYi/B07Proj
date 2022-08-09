@@ -1,58 +1,102 @@
 package com.example.sport_events_scheduler;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddNewEvent extends AppCompatActivity {
+public class AddEventDialogFragment extends DialogFragment {
 
-    Remote remote;
-    Intent parent;
-    EditText nameText, capacityText, startText, endText;
+    private Remote remote;
+    private String venue;
+    private EditText nameText, capacityText, startText, endText;
+    private Button addBtn;
+    private ImageButton closeBtn;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_event);
-
-        /** Initializer. */
-        remote = new Remote();
-        parent = getIntent();
-        nameText = (EditText) this.findViewById(R.id.nameVenue);
-        capacityText = (EditText) this.findViewById(R.id.capacityVenue);
-        startText = (EditText) this.findViewById(R.id.startVenue);
-        endText = (EditText) this.findViewById(R.id.endVenue);
+    public AddEventDialogFragment(String venue) {
+        this.venue = venue;
     }
 
-    public void add(View view) {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE, R.style.DialogActivity);
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.add_event, null);
+        // Components.
+        remote = new Remote();
+        nameText = view.findViewById(R.id.nameVenue);
+        capacityText = view.findViewById(R.id.capacityVenue);
+        startText = view.findViewById(R.id.startVenue);
+        endText = view.findViewById(R.id.endVenue);
+        addBtn = view.findViewById(R.id.addButton);
+
+        // Builder setup.
+        builder.setView(view);
+
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if (eventRequest())
+                   dismiss();
+            }
+        });
+        /*
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });*/
+
+        return builder.create();
+    }
+
+    private boolean eventRequest() {
 
         /** Event info. */
         String name = nameText.getText().toString();
         String capacity = capacityText.getText().toString();
-        String location = parent.getStringExtra("location");
         String start = startText.getText().toString();
         String end = endText.getText().toString();
         /** Validate Inputs. */
         if (!isValidEvent(name, capacity, start, end))
-            return;
+            return false;
         /** Clear errors. */
         nameText.setError(null);
         capacityText.setError(null);
         startText.setError(null);
         endText.setError(null);
         /** Reference to the path. */
-        DatabaseReference ref = remote.getEventRef().child(location).push();
+        DatabaseReference ref = remote.getPendingEventRef().push();
         String id = ref.getKey();
         /** SportEvent Object. */
-        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, location);
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, venue);
         /** Push data into the database. */
         ref.setValue(event);
         /** Clear Inputs. */
@@ -60,6 +104,7 @@ public class AddNewEvent extends AppCompatActivity {
         capacityText.setText("");
         startText.setText("");
         endText.setText("");
+        return true;
     }
 
     /** Validate event information provided by users. */
@@ -92,4 +137,5 @@ public class AddNewEvent extends AppCompatActivity {
         }
         return true;
     }
+
 }

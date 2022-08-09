@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Log in button */
     public void login(View view) {
-
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
 
@@ -113,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
+        
         /** Validate inputs. */
         if (areValidInputs(username, password)) {
             /** Clear errors. */
@@ -149,19 +149,23 @@ public class MainActivity extends AppCompatActivity {
     /** Display Sign Up button. */
     public void trySignup(View view) {
         clearText();
+
         CrossFade.animate(signupHint, loginHint, duration);
         CrossFade.animate(signupPic, loginPic, duration);
         CrossFade.animate(loginText, signupText, duration);
         CrossFade.animate(signup, login, duration);
+
     }
 
     /** Display Login button. */
     public void tryLogin(View view) {
         clearText();
+
         CrossFade.animate(loginHint, signupHint, duration);
         CrossFade.animate(loginPic, signupPic, duration);
         CrossFade.animate(signupText, loginText, duration);
         CrossFade.animate(login, signup, duration);
+
     }
 
     /** Clear text entered. */
@@ -169,4 +173,7 @@ public class MainActivity extends AppCompatActivity {
         userNameText.setText("");
         passwordText.setText("");
     }
+
+
+
 }
