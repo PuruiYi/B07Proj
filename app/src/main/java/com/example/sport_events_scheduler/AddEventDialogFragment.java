@@ -132,8 +132,10 @@ public class AddEventDialogFragment extends DialogFragment {
                         start_min = minute;
                         calendar.set(Calendar.HOUR_OF_DAY, hour);
                         calendar.set(Calendar.MINUTE, minute);
-                        if (calendar.before(Calendar.getInstance()))
+                        if (calendar.before(Calendar.getInstance())) {
                             Toast.makeText(getActivity(), "The start time has already passed.", Toast.LENGTH_LONG).show();
+                            timeText.setError("Invalid start time");
+                        }
                         else {
                             String startTime = new SimpleDateFormat("HH:mm").format(calendar.getTime());
                             startText.setText(startTime);
@@ -142,7 +144,7 @@ public class AddEventDialogFragment extends DialogFragment {
                         timeText.setText(timeText.getText().toString() + " - ");
                     }
                 },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
-                startTimePicker.setTitle("Select a start time for the event.");
+                startTimePicker.setTitle("Select a start time");
 
                 TimePickerDialog endTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -168,13 +170,18 @@ public class AddEventDialogFragment extends DialogFragment {
                         }
                     }
                 },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
-                endTimePicker.setTitle("Select a end time for the event.");
+                endTimePicker.setTitle("Select a end time");
 
                 startTimePicker.show();
                 startTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        endTimePicker.show();
+                        if (timeText.getError() == null) {
+                            endTimePicker.show();
+                            Toast.makeText(getActivity(), "Time to select a end time", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                            timeText.setError(null);
                     }
                 });
 
