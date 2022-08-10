@@ -73,6 +73,8 @@ public class JoinOrQuitEventAdapter extends RecyclerView.Adapter<JoinOrQuitEvent
         checkJoined.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.joinBtn.setVisibility(View.GONE);
+                holder.quitBtn.setVisibility(View.GONE);
                 if (snapshot.exists()) {
                     holder.quitBtn.setVisibility(View.VISIBLE);
                     //holder.quitBtn.setText();
