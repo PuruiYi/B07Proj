@@ -82,6 +82,8 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
             timeView = itemView.findViewById(R.id.tvTime);
             capacityView = itemView.findViewById(R.id.tvCapacity);
             optionView = itemView.findViewById(R.id.tvOption);
+
+            itemView.setBackgroundResource(R.drawable.cardview_purple_bg);
         }
     }
 

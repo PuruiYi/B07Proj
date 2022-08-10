@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,11 +23,18 @@ import java.util.ArrayList;
 
 public class EventFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
 
-    View view;
-    DatabaseReference ref;
-    RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
+    private boolean tip;
+    private View view;
+    private DatabaseReference ref;
+    private RecyclerView recyclerView;
+    private VenueAdapter adapter;
+    private ArrayList<String> venues;
+
+    public EventFragment(Boolean tip) {
+        super();
+        this.tip = tip;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +44,19 @@ public class EventFragment extends Fragment implements VenueAdapter.VenueOnClick
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_admin_add_venue, container, false);
+        view = inflater.inflate(R.layout.fragment_user_events, container, false);
+
+        // First time tip.
+        if (tip) {
+            Toast.makeText(getActivity(), "All upcoming events listed here.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "They are filtered by venues.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Click to see all.", Toast.LENGTH_SHORT).show();
+        }
 
         /** Initializer. */
         Remote remote = new Remote();
         ref = remote.getEventRef();
-        recyclerView = view.findViewById(R.id.adminVenueList);
+        recyclerView = view.findViewById(R.id.userVenueList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         venues = new ArrayList<>();

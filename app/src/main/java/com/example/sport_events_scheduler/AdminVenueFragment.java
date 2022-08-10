@@ -1,41 +1,42 @@
 package com.example.sport_events_scheduler;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class AdminAddVenueFragment extends Fragment {
+public class AdminVenueFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
 
-    View view;
-    DatabaseReference ref;
-    RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
-    FloatingActionButton addVenueBtn;
+    private Boolean tip;
+    private View view;
+    private DatabaseReference ref;
+    private RecyclerView recyclerView;
+    private VenueAdapter adapter;
+    private ArrayList<String> venues;
+    private FloatingActionButton addVenueBtn;
+
+    public AdminVenueFragment(Boolean tip) {
+        super();
+        this.tip = tip;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,12 @@ public class AdminAddVenueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_admin_add_venue, container, false);
+        view = inflater.inflate(R.layout.fragment_admin_venue, container, false);
+
+        if (tip) {
+            Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Click + to add a new venue.", Toast.LENGTH_SHORT).show();
+        }
 
         /** Initializer. */
         Remote remote = new Remote();
@@ -56,7 +62,7 @@ public class AdminAddVenueFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         venues = new ArrayList<>();
-        adapter = new VenueAdapter(this.getContext(), venues);
+        adapter = new VenueAdapter(this.getContext(), venues, this);
         recyclerView.setAdapter(adapter);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -93,5 +99,13 @@ public class AdminAddVenueFragment extends Fragment {
         /** Initializer. */
         DialogFragment dialog = new AddVenueDialogFragment();
         dialog.show(getChildFragmentManager(), "AddVenueDialog");
+    }
+
+    @Override
+    public void displayActivity(View view) {
+        Intent intent = new Intent(this.getActivity(), AdminManageVenuesActivity.class);
+        TextView location = view.findViewById(R.id.nameAvenueLabel);
+        intent.putExtra("location", location.getText().toString());
+        startActivity(intent);
     }
 }

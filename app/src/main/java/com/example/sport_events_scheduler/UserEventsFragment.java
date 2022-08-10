@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,11 +23,17 @@ import java.util.ArrayList;
 
 public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
 
-    View view;
-    DatabaseReference ref;
-    RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
+    private Boolean tip;
+    private View view;
+    private DatabaseReference ref;
+    private RecyclerView recyclerView;
+    private VenueAdapter adapter;
+    private ArrayList<String> venues;
+
+    public UserEventsFragment(Boolean tip) {
+        super();
+        this.tip = tip;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,12 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
                              Bundle savedInstanceState) {
         /** Inflate the layout for this fragment. */
         view = inflater.inflate(R.layout.fragment_user_events, container, false);
+
+        // First time tip.
+        if (tip) {
+            Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Click to see all available activities.", Toast.LENGTH_SHORT).show();
+        }
 
         /** Initializer. */
         Remote remote = new Remote();

@@ -4,12 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
@@ -50,6 +53,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.time.setText(event.getStart() + " - " + event.getEnd());
         holder.location.setText(event.getLocation());
 
+        Time curTime = new Time(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()));
+        Time startTime = new Time(event.getStart());
+        Time endTime = new Time(event.getEnd());
+
+        ImageView img = holder.itemView.findViewById(R.id.expriedImg);
+
+        if (endTime.compareTo(curTime) < 0) {
+            holder.itemView.setBackgroundResource(R.drawable.cardview_red_bg);
+            img.setImageResource(R.drawable.expired);
+        }
+        else if (startTime.compareTo(curTime) < 0) {
+            holder.itemView.setBackgroundResource(R.drawable.cardview_orange_bg);
+            img.setImageResource(R.drawable.hourglass);
+        }
+        else{
+            holder.itemView.setBackgroundResource(R.drawable.cardview_blue_bg);
+            img.setImageResource(R.drawable.coming_soon);
+        }
+
         if(listener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,6 +102,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             date = itemView.findViewById(R.id.eventDate);
             time = itemView.findViewById(R.id.eventTime);
             location = itemView.findViewById(R.id.eventLocation);
+
         }
     }
 

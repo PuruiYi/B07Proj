@@ -4,56 +4,49 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sport_events_scheduler.databinding.ActivityUserBinding;
 
 public class UserActivity extends AppCompatActivity {
 
-    ActivityUserBinding binding;
-    String currUser;
+    private Boolean upcomingTip, eventsTip, scheduleTip;
+    private ActivityUserBinding binding;
+    private String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        upcomingTip = true; eventsTip = true; scheduleTip = true;
+
         currUser = getIntent().getStringExtra("user");
 
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        manageFragment(new UserEventsFragment());
+        manageFragment(new UserUpcomingEventsFragment());
 
-        Toast.makeText(getApplicationContext(), "Welcome, " +
-                getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Hi, " +
+                getIntent().getStringExtra("user"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "You are in <USER> page", Toast.LENGTH_SHORT).show();
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
                 case R.id.user_nav_upcomingEvents:
                     manageFragment(new UserUpcomingEventsFragment());
+                    upcomingTip = false;
                     break;
 
                 case R.id.user_nav_events:
-                    manageFragment(new UserEventsFragment());
+                    manageFragment(new UserEventsFragment(eventsTip));
+                    eventsTip = false;
                     break;
 
                 case R.id.user_nav_schedule:
-
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("user", currUser);
-//                    UserScheduleFragment fragment = new UserScheduleFragment(currUser);
-//                    fragment.setArguments(bundle);
-
-
-                    manageFragment(new UserScheduleFragment(currUser));
+                    manageFragment(new UserScheduleFragment(currUser, scheduleTip));
+                    scheduleTip = false;
                     break;
             }
             return true;
@@ -67,9 +60,4 @@ public class UserActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void show_my_activities(View view){
-        Toast.makeText(this, "Your reservation will show up here", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), ShowMyActivities.class);
-        startActivity(intent);
-    }
 }
