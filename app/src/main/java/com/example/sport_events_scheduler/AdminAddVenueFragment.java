@@ -49,8 +49,8 @@ public class AdminAddVenueFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_admin_add_venue, container, false);
 
-        Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity(), "Click + to add a new venue.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Click + to add a new venue.", Toast.LENGTH_SHORT).show();
 
         /** Initializer. */
         Remote remote = new Remote();

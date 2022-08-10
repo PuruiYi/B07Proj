@@ -41,8 +41,8 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
         /** Inflate the layout for this fragment. */
         view = inflater.inflate(R.layout.fragment_user_events, container, false);
 
-        Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity(), "Click to see all available activities.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Click to see all available activities.", Toast.LENGTH_SHORT).show();
 
         /** Initializer. */
         Remote remote = new Remote();

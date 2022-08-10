@@ -39,9 +39,9 @@ public class EventFragment extends Fragment implements VenueAdapter.VenueOnClick
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_user_events, container, false);
 
-        Toast.makeText(getActivity(), "All upcoming events listed here.", Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity(), "They are filtered by venues.", Toast.LENGTH_LONG).show();
-        Toast.makeText(getActivity(), "Click to see all.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "All upcoming events listed here.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "They are filtered by venues.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Click to see all.", Toast.LENGTH_SHORT).show();
 
         /** Initializer. */
         Remote remote = new Remote();
