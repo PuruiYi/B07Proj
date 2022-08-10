@@ -1,0 +1,67 @@
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- Worked on my user story
+
+What are you planning on doing today?
+	- I found issues with my code, I will try to figure out whats causing them
+
+Any impediments or stumbling blocks?
+	- Yes, the bugs
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- work on admin feature: edit pending events 
+
+What are you planning on doing today?
+	- thinking about more features to added on
+	- continue to work on current feature
+
+Any impediments or stumbling blocks?
+	- nope

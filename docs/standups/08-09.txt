@@ -1,0 +1,75 @@
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- User-friendly features:
+	1. DatePickerDialog pops up when select date.
+	2. TimePickerDialog pops up when select time.
+	3. date and time validation.
+	
+	- TA-friendly features:
+	1. Sign up as an admin by checking the box. 
+	2. Login as an admin by checking the box. 
+		a. Admin accounts can login as either user or admin. 
+		b. Errors occur when user accounts try to login as admin. Uncheck the box to login as user will be solve it.
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Nope.
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
