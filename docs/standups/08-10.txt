@@ -33,13 +33,16 @@ Any impediments or stumbling blocks?
 Name: Barry Zheng
 
 What have you done since yesterday?
-	- Put points here ...
+	- CardView UI design...
+	- Events are distinguished between running, expired, and comming states. They are shown in different colors, and they are with different images embedded.
+	- Toast messages (tips) adjustment.
 
 What are you planning on doing today?
-	- Put points here ...
+	- When identifing the upcoming, expired, running events, we only compare hour of day and minute with the current time.
+	  Next, we might add a date to each event, and the date will be considered when identifying events' state.
 
 Any impediments or stumbling blocks?
-	- Put points here ...
+	- No.
   
 //Person 4
 
