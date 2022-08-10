@@ -18,12 +18,16 @@ public class AdminActivity extends AppCompatActivity {
     ActivityAdminBinding binding;
     DatabaseReference ref;
 
+    boolean eventTip, pendingTip, addVenueTip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        manageFragment(new EventFragment());
+        manageFragment(new EventFragment(eventTip));
+
+        eventTip = true; pendingTip = true; addVenueTip = true;
 
         Toast.makeText(getApplicationContext(), "Hi, " +
                 getIntent().getStringExtra("user"), Toast.LENGTH_SHORT).show();
@@ -31,13 +35,16 @@ public class AdminActivity extends AppCompatActivity {
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.event){
-                manageFragment(new EventFragment());
+                manageFragment(new EventFragment(eventTip));
+                eventTip = false;
             }
             if(item.getItemId() == R.id.pendingEvent){
-                manageFragment(new PendingEventFragment());
+                manageFragment(new PendingEventFragment(pendingTip));
+                pendingTip = false;
             }
             if(item.getItemId() == R.id.account){
-                manageFragment(new AdminAddVenueFragment());
+                manageFragment(new AdminAddVenueFragment(addVenueTip));
+                addVenueTip = false;
             }
             return true;
         });

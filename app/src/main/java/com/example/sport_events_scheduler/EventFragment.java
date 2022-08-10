@@ -23,11 +23,18 @@ import java.util.ArrayList;
 
 public class EventFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
 
-    View view;
-    DatabaseReference ref;
-    RecyclerView recyclerView;
-    VenueAdapter adapter;
-    ArrayList<String> venues;
+    private boolean tip;
+    private View view;
+    private DatabaseReference ref;
+    private RecyclerView recyclerView;
+    private VenueAdapter adapter;
+    private ArrayList<String> venues;
+
+    public EventFragment(Boolean tip) {
+        super();
+        this.tip = tip;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +46,12 @@ public class EventFragment extends Fragment implements VenueAdapter.VenueOnClick
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_user_events, container, false);
 
-        Toast.makeText(getActivity(), "All upcoming events listed here.", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "They are filtered by venues.", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "Click to see all.", Toast.LENGTH_SHORT).show();
+        // First time tip.
+        if (tip) {
+            Toast.makeText(getActivity(), "All upcoming events listed here.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "They are filtered by venues.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Click to see all.", Toast.LENGTH_SHORT).show();
+        }
 
         /** Initializer. */
         Remote remote = new Remote();

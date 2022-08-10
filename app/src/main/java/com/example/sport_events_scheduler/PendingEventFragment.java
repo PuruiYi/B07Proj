@@ -21,12 +21,17 @@ import java.util.ArrayList;
 
 public class PendingEventFragment extends Fragment implements PendingEventAdapter.OnItemClickListener {
 
-    DatabaseReference ref;  //ref to pendingEvent
-    DatabaseReference eventRef; //ref to event
-    RecyclerView recyclerView;
-    PendingEventAdapter pendingEventAdapter;
-    ArrayList<Event> pendingEvents;
+    private boolean tip;
+    private DatabaseReference ref;  //ref to pendingEvent
+    private DatabaseReference eventRef; //ref to event
+    private RecyclerView recyclerView;
+    private PendingEventAdapter pendingEventAdapter;
+    private ArrayList<Event> pendingEvents;
 
+    public PendingEventFragment(Boolean tip) {
+        super();
+        this.tip = tip;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +45,12 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
         View view = inflater.inflate(R.layout.fragment_pending_event, container, false);
         getActivity().setTitle("View Pending Events");
 
-        Toast.makeText(getActivity(), "All pending events listed here.", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "Click to modify.", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(), "Accept/reject by clicking on the top-right conor", Toast.LENGTH_SHORT).show();
-
+        // First time tip.
+        if (tip) {
+            Toast.makeText(getActivity(), "All pending events listed here.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Click to modify.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Accept/reject by clicking on the top-right conor", Toast.LENGTH_SHORT).show();
+        }
 
         recyclerView = view.findViewById(R.id.pendingEventList);
         Remote remote = new Remote();

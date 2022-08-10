@@ -20,16 +20,18 @@ import java.util.ArrayList;
 
 public class UserScheduleFragment extends Fragment {
 
-    View view;
-    DatabaseReference accontRef;
-    DatabaseReference eventRef;
+    private Boolean tip;
+    private View view;
+    private DatabaseReference accontRef;
+    private DatabaseReference eventRef;
 
-    ListView lvItems;
-    String currUser;
+    private ListView lvItems;
+    private String currUser;
 
-    public UserScheduleFragment(String currUser) {
+    public UserScheduleFragment(String currUser, Boolean tip) {
         super();
         this.currUser = currUser;
+        this.tip = tip;
     }
 
     @Override
@@ -41,7 +43,8 @@ public class UserScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Toast.makeText(getActivity(), "All my joined activities listed here.", Toast.LENGTH_LONG).show();
+        if (tip)
+            Toast.makeText(getActivity(), "All my joined activities listed here.", Toast.LENGTH_LONG).show();
 
         view = inflater.inflate(R.layout.fragment_user_schedule, container, false);
         lvItems = (ListView) view.findViewById(R.id.lvItems);

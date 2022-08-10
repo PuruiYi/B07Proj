@@ -4,32 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sport_events_scheduler.databinding.ActivityUserBinding;
 
 public class UserActivity extends AppCompatActivity {
 
-    ActivityUserBinding binding;
-    String currUser;
+    private Boolean upcomingTip, eventsTip, scheduleTip;
+    private ActivityUserBinding binding;
+    private String currUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        upcomingTip = true; eventsTip = true; scheduleTip = true;
+
         currUser = getIntent().getStringExtra("user");
 
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        manageFragment(new UserEventsFragment());
+        manageFragment(new UserUpcomingEventsFragment());
 
         Toast.makeText(getApplicationContext(), "Hi, " +
                 getIntent().getStringExtra("user"), Toast.LENGTH_SHORT).show();
@@ -40,21 +36,17 @@ public class UserActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.user_nav_upcomingEvents:
                     manageFragment(new UserUpcomingEventsFragment());
+                    upcomingTip = false;
                     break;
 
                 case R.id.user_nav_events:
-                    manageFragment(new UserEventsFragment());
+                    manageFragment(new UserEventsFragment(eventsTip));
+                    eventsTip = false;
                     break;
 
                 case R.id.user_nav_schedule:
-
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("user", currUser);
-//                    UserScheduleFragment fragment = new UserScheduleFragment(currUser);
-//                    fragment.setArguments(bundle);
-
-
-                    manageFragment(new UserScheduleFragment(currUser));
+                    manageFragment(new UserScheduleFragment(currUser, scheduleTip));
+                    scheduleTip = false;
                     break;
             }
             return true;
