@@ -69,38 +69,4 @@ public class UserUpcomingEvent extends AppCompatActivity {
     }
 
 
-    /** i still have to add code to store the id of user who joined the event*/
-    public void joinEvent(View view) {
-        View layout = (View) view.getParent();
-        String id = ((TextView)layout.findViewById(R.id.eventId)).getText().toString();
-
-        Query e = databaseReference.orderByKey().equalTo(id);
-        e.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    /** If the user has already joined the event. */
-                    for (DataSnapshot user : snapshot.child(id).child("users").getChildren()) {
-                        if (user.getKey().equals(parent.getStringExtra("user"))) {
-
-                            return;
-                        }
-                    }
-
-                    int old = snapshot.child(id).child("joined").getValue(Integer.class);
-                    int capacity = snapshot.child(id).child("capacity").getValue(Integer.class);
-                    if (old != capacity) {
-                        databaseReference.child(id).child("joined").setValue(old + 1);
-                        databaseReference.child(id).child("users").child(parent.getStringExtra("user")).setValue("");
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                throw error.toException();
-            }
-        });
-    }
-
 }

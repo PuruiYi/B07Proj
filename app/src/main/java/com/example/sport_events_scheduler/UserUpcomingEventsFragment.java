@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,7 +48,7 @@ public class UserUpcomingEventsFragment extends Fragment {
         /** Initializer. */
         Remote remote = new Remote();
         ref = remote.getEventRef();
-        parent = getActivity().getIntent();
+        parent =  getActivity().getIntent();
         recyclerView = view.findViewById(R.id.eventList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -80,7 +81,6 @@ public class UserUpcomingEventsFragment extends Fragment {
         return view;
     }
 
-    /** i still have to add code to store the id of user who joined the event*/
     public void joinEvent(View view) {
         View layout = (View) view.getParent();
         String id = ((TextView)layout.findViewById(R.id.eventId)).getText().toString();
