@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,11 +46,13 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.My
         holder.capacity.setText(Integer.toString(event.getCapacity()));
         holder.joined.setText(Integer.toString(event.getJoined()));
         holder.time.setText(event.getStart() + " - " + event.getEnd());
-        holder.location.setText(event.getLocation());
+        holder.date.setText(event.getDate());
+        holder.venue.setText(event.getLocation());
 
-        Time curTime = new Time(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()));
-        Time startTime = new Time(event.getStart());
-        Time endTime = new Time(event.getEnd());
+        Time curTime = new Time(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()),
+                                new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+        Time startTime = new Time(event.getStart(), event.getDate());
+        Time endTime = new Time(event.getEnd(), event.getDate());
 
         ImageView img = holder.itemView.findViewById(R.id.expriedImgMg);
 
@@ -70,7 +72,7 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.My
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Button btn = holder.itemView.findViewById(R.id.delBtn);
+                ImageButton btn = holder.itemView.findViewById(R.id.delBtn);
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -94,7 +96,7 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, name, capacity, joined, time, location;
+        TextView id, name, capacity, joined, time, date, venue;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -104,7 +106,8 @@ public class AdminEventAdapter extends RecyclerView.Adapter<AdminEventAdapter.My
             capacity = itemView.findViewById(R.id.eventCapacityMg);
             joined = itemView.findViewById(R.id.eventJoinedMg);
             time = itemView.findViewById(R.id.eventTimeMg);
-            location = itemView.findViewById(R.id.eventLocationMg);
+            date = itemView.findViewById(R.id.eventDate);
+            venue = itemView.findViewById(R.id.eventLocationMg);
 
         }
     }
