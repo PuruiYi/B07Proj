@@ -16,6 +16,13 @@ public abstract class Date1 {
     }
 
     public Date1(String date){
+        Pattern pattern = Pattern.compile("\\s*\\d{4}\\s*-\\s*\\d{2}\\s*-\\s*\\d{2}\\s*");
+        Matcher matcher = pattern.matcher(date);
+        if(!matcher.matches()){
+            this.date = null;
+            this.isvalid = false;
+            return;
+        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         try{

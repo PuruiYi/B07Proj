@@ -69,7 +69,7 @@ public class Time extends Date1 implements Comparable<Time>{
         if(obj == null)
             return false;
         if(obj == this)
-            return false;
+            return true;
         if(!(obj instanceof Time))
             return false;
         Time time = (Time)obj;
