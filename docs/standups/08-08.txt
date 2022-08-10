@@ -1,0 +1,68 @@
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- User-friendly features:
+	1. Users can close the window by clicking close button when schedule new events.
+	2. Admins can close the window by clicking close button when add new venues.
+
+What are you planning on doing today?
+	- Schedule new events UI & functionalities rework.
+
+Any impediments or stumbling blocks?
+	- Nope.
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...

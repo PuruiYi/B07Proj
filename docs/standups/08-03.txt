@@ -1,0 +1,68 @@
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	I didn't code anything yesterday.
+
+What are you planning on doing today?
+	I will take the pages and code assigned to me and complete them.
+
+Any impediments or stumbling blocks?
+	I can't seem to get my code to integrate with master branch.
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- worked on my user story
+
+What are you planning on doing today?
+	- im going to look over my code, and optimize it before i commit any code
+
+Any impediments or stumbling blocks?
+	- nope
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	Started writing java code.
+
+What are you planning on doing today?
+	Completed all my work.
+
+Any impediments or stumbling blocks?
+	I met with some difficulties.
+	As soon as I run the app, it either stops or it just
+	keeps blinking. I was trying to solve this.
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- finished my user story and merge my work to Barry's work
+
+What are you planning on doing today?
+	- think about how to merge my work to other members' work in the end
+	
+Any impediments or stumbling blocks?
+	- deadline's approaching
