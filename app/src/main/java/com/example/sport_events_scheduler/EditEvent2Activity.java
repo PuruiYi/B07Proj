@@ -70,13 +70,13 @@ public class EditEvent2Activity extends AppCompatActivity {
         this.id = intent.getStringExtra("id");
         this.usernames = intent.getStringArrayListExtra("usernames");
 
-        this.Name = (EditText)findViewById(R.id.eventName);
-        this.Capacity = (EditText)findViewById(R.id.eventCapacity);
-        this.Joined = (EditText)findViewById(R.id.eventJoined);
-        this.Location = (EditText)findViewById(R.id.eventLocation);
+        this.Name = (EditText)findViewById(R.id.eventNameMg);
+        this.Capacity = (EditText)findViewById(R.id.eventCapacityMg);
+        this.Joined = (EditText)findViewById(R.id.eventJoinedMg);
+        this.Location = (EditText)findViewById(R.id.eventLocationMg);
         this.Start = (EditText)findViewById(R.id.eventStartAt);
         this.End = (EditText)findViewById(R.id.eventEndAt);
-        this.Id = (EditText)findViewById(R.id.eventId);
+        this.Id = (EditText)findViewById(R.id.eventIdMg);
         this.Text = (TextView)findViewById(R.id.edittext4);
 
         Linear = (LinearLayout)findViewById(R.id.linearLayout);

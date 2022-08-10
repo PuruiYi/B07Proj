@@ -40,7 +40,7 @@ public class EditEventActivity extends AppCompatActivity implements EventAdapter
         remote = new Remote();
         intent = getIntent();
         ref = remote.getAvenueRef(intent.getStringExtra("location"));
-        recyclerView = findViewById(R.id.eventList);
+        recyclerView = findViewById(R.id.adminEventList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

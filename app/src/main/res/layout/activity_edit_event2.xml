@@ -32,7 +32,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/eventName"
+                android:id="@+id/eventNameMg"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
@@ -57,7 +57,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/eventCapacity"
+                android:id="@+id/eventCapacityMg"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
@@ -85,7 +85,7 @@
                 tools:layout_editor_absoluteY="0dp" />
 
             <EditText
-                android:id="@+id/eventJoined"
+                android:id="@+id/eventJoinedMg"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
@@ -111,7 +111,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/eventLocation"
+                android:id="@+id/eventLocationMg"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
@@ -186,7 +186,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/eventId"
+                android:id="@+id/eventIdMg"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"

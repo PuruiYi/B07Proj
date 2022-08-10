@@ -43,7 +43,7 @@ public class AdminActivity extends AppCompatActivity {
                 pendingTip = false;
             }
             if(item.getItemId() == R.id.account){
-                manageFragment(new AdminAddVenueFragment(addVenueTip));
+                manageFragment(new AdminVenueFragment(addVenueTip));
                 addVenueTip = false;
             }
             return true;
