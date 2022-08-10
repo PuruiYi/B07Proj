@@ -8,7 +8,7 @@
     <item
         android:id="@+id/user_nav_upcomingEvents"
         android:icon="@drawable/ic_baseline_call_to_action_24"
-        android:title="Item" />
+        android:title="Upcoming Events" />
     <item
         android:id="@+id/user_nav_schedule"
         android:icon="@drawable/ic_baseline_account_circle_24"
