@@ -31,6 +31,7 @@ public class UserUpcomingEventsFragment extends Fragment {
     RecyclerView recyclerView;
     EventAdapter adapter;
     ArrayList<Event> events;
+    Intent parent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class UserUpcomingEventsFragment extends Fragment {
         /** Initializer. */
         Remote remote = new Remote();
         ref = remote.getEventRef();
+        parent = getActivity().getIntent();
         recyclerView = view.findViewById(R.id.eventList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -111,4 +113,5 @@ public class UserUpcomingEventsFragment extends Fragment {
             }
         });
     }
+
 }
