@@ -30,7 +30,7 @@ public class UserUpcomingEventsFragment extends Fragment {
     View view;
     DatabaseReference ref;
     RecyclerView recyclerView;
-    EventAdapter adapter;
+    JoinOrQuitEventAdapter adapter;
     ArrayList<Event> events;
     Intent parent;
 
@@ -54,7 +54,7 @@ public class UserUpcomingEventsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         events = new ArrayList<>();
-        adapter = new EventAdapter(this.getContext(), events);
+        adapter = new JoinOrQuitEventAdapter(this.getContext(), events, parent);
         recyclerView.setAdapter(adapter);
         ref.addValueEventListener(
                 new ValueEventListener() {
@@ -80,38 +80,4 @@ public class UserUpcomingEventsFragment extends Fragment {
                 });
         return view;
     }
-
-    public void joinEvent(View view) {
-        View layout = (View) view.getParent();
-        String id = ((TextView)layout.findViewById(R.id.eventId)).getText().toString();
-
-        Query e = ref.orderByKey().equalTo(id);
-        e.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    /** If the user has already joined the event. */
-                    for (DataSnapshot user : snapshot.child(id).child("users").getChildren()) {
-                        if (user.getKey().equals(parent.getStringExtra("user"))) {
-
-                            return;
-                        }
-                    }
-
-                    int old = snapshot.child(id).child("joined").getValue(Integer.class);
-                    int capacity = snapshot.child(id).child("capacity").getValue(Integer.class);
-                    if (old != capacity) {
-                        ref.child(id).child("joined").setValue(old + 1);
-                        ref.child(id).child("users").child(parent.getStringExtra("user")).setValue("");
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                throw error.toException();
-            }
-        });
-    }
-
 }
