@@ -53,9 +53,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.time.setText(event.getStart() + " - " + event.getEnd());
         holder.location.setText(event.getLocation());
 
-        Time curTime = new Time(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()));
-        Time startTime = new Time(event.getStart());
-        Time endTime = new Time(event.getEnd());
+        Time curTime = new Time(new SimpleDateFormat("HH:mm").format(Calendar.getInstance().getTime()),
+                                new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+        Time startTime = new Time(event.getStart(), event.getDate());
+        Time endTime = new Time(event.getEnd(), event.getDate());
 
         ImageView img = holder.itemView.findViewById(R.id.expriedImg);
 

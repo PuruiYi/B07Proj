@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class JoinOrQuitEventAdapter extends RecyclerView.Adapter<JoinOrQuitEventAdapter.MyViewHolder> {
 
@@ -73,9 +76,10 @@ public class JoinOrQuitEventAdapter extends RecyclerView.Adapter<JoinOrQuitEvent
         checkJoined.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.joinBtn.setVisibility(View.GONE);
+                holder.quitBtn.setVisibility(View.GONE);
                 if (snapshot.exists()) {
                     holder.quitBtn.setVisibility(View.VISIBLE);
-                    //holder.quitBtn.setText();
                 }
 
                 else {
