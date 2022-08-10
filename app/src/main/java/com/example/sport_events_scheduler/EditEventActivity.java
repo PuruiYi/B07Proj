@@ -53,15 +53,23 @@ public class EditEventActivity extends AppCompatActivity implements EventAdapter
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
 
+
                 events.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    //TODO: just for test
+                    if(!dataSnapshot.hasChild("date"))
+                        continue;
+
+
                     Date now = Calendar.getInstance().getTime();
-                    SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-                    Time localtime = new Time(format.format(now));
+                    SimpleDateFormat time_format = new SimpleDateFormat("HH:mm");
+                    SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Time localtime = new Time(time_format.format(now), date_format.format(now));
 
                     Event event = dataSnapshot.getValue(Event.class);
-                    Time start_time = new Time(event.getStart());
+                    Time start_time = new Time(event.getStart(), event.getDate());
 
                     if(start_time.compareTo(localtime) > 0)
                         events.add(event);
@@ -85,6 +93,7 @@ public class EditEventActivity extends AppCompatActivity implements EventAdapter
         TextView event_id = view.findViewById(R.id.eventId);
         TextView event_name = view.findViewById(R.id.eventName);
         TextView event_capacity = view.findViewById(R.id.eventCapacity);
+        TextView event_date = view.findViewById(R.id.eventDate);
         TextView event_time = view.findViewById(R.id.eventTime);
         TextView event_joined = view.findViewById(R.id.eventJoined);
         TextView event_location = view.findViewById(R.id.eventLocation);
@@ -92,12 +101,15 @@ public class EditEventActivity extends AppCompatActivity implements EventAdapter
         Pattern pattern = Pattern.compile("(\\d{1,2}:\\d\\d)\\s+-\\s+(\\d{1,2}:\\d\\d)");
         Matcher matcher = pattern.matcher(event_time.getText().toString());
         matcher.find();
+        String start = matcher.group(1);
+        String end = matcher.group(2);
         intent.putExtra("id", event_id.getText().toString());
         intent.putExtra("name", event_name.getText().toString());
         intent.putExtra("capacity", event_capacity.getText().toString());
         intent.putExtra("joined", event_joined.getText().toString());
-        intent.putExtra("start", matcher.group(1));
-        intent.putExtra("end", matcher.group(2));
+        intent.putExtra("start", start);
+        intent.putExtra("end", end);
+        intent.putExtra("date", event_date.getText().toString());
         intent.putExtra("location", event_location.getText().toString());
         startActivity(intent);
     }
