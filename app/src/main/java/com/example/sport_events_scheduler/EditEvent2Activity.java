@@ -242,9 +242,17 @@ public class EditEvent2Activity extends AppCompatActivity {
         if(Delete.getText().toString().equals("Delete")) {
             String id1 = new String(this.id);
             Delete(id1);
-            Linear.removeViews(0, 8);
-            this.Text.setText("Delete success");
+            Linear.removeViews(0, 9);
+            this.Text.setText("Delete success. Back to prev page in 5 seconds.");
             this.Text.setVisibility(View.VISIBLE);
+
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    EditEvent2Activity.this.finish();
+                }
+            }, 5000);
         }
         else{
             this.Name.setText(this.name);
