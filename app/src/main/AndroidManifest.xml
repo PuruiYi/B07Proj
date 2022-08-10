@@ -33,6 +33,10 @@
             android:theme="@style/DisplayActivity"
             android:exported="false"/>
         <activity
+            android:name=".UserUpcomingEvent"
+            android:theme="@style/DisplayActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

@@ -65,7 +65,7 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
                 events.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
+                    System.out.println(dataSnapshot.getValue());
                     Event event = dataSnapshot.getValue(Event.class);
                     events.add(event);
 

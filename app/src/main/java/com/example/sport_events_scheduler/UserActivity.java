@@ -30,12 +30,13 @@ public class UserActivity extends AppCompatActivity {
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
             switch (item.getItemId()) {
-                case R.id.user_nav_upcomingEvents:
-                    manageFragment(new UserUpcomingEventsFragment());
-                    break;
 
                 case R.id.user_nav_events:
                     manageFragment(new UserEventsFragment());
+                    break;
+
+                case R.id.user_nav_upcomingEvents:
+                    manageFragment(new UserUpcomingEventsFragment());
                     break;
 
                 case R.id.user_nav_schedule:
