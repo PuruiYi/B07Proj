@@ -28,16 +28,9 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowMyActivities"
-            android:exported="false" />
-        <activity
             android:name=".DetailPendingEvent"
             android:exported="false"
             android:parentActivityName=".AdminActivity" />
-        <activity
-            android:name=".AddNewEvent"
-            android:exported="false"
-            android:theme="@style/DialogActivity" />
         <activity
             android:name=".DisplayActivitiesAtVenue"
             android:exported="false"

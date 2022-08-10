@@ -41,6 +41,8 @@ public class UserScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Toast.makeText(getActivity(), "All my joined activities listed here.", Toast.LENGTH_LONG).show();
+
         view = inflater.inflate(R.layout.fragment_user_schedule, container, false);
         lvItems = (ListView) view.findViewById(R.id.lvItems);
 

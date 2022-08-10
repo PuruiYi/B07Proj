@@ -1,24 +1,17 @@
 package com.example.sport_events_scheduler;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.sport_events_scheduler.databinding.ActivityAdminBinding;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.google.firebase.database.DatabaseReference;
+
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -31,6 +24,10 @@ public class AdminActivity extends AppCompatActivity {
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         manageFragment(new EventFragment());
+
+        Toast.makeText(getApplicationContext(), "Hi, " +
+                getIntent().getStringExtra("user"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "You are in <ADMIN> page", Toast.LENGTH_SHORT).show();
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
             if(item.getItemId() == R.id.event){

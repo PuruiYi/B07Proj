@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Events"
+    <item android:title="Upcoming Events"
         android:icon="@drawable/ic_baseline_call_to_action_24"
         android:id="@+id/event"/>
     <item android:title="Pending Events"

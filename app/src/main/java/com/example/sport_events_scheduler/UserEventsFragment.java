@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,6 +40,9 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
                              Bundle savedInstanceState) {
         /** Inflate the layout for this fragment. */
         view = inflater.inflate(R.layout.fragment_user_events, container, false);
+
+        Toast.makeText(getActivity(), "All available venues listed here.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Click to see all available activities.", Toast.LENGTH_LONG).show();
 
         /** Initializer. */
         Remote remote = new Remote();

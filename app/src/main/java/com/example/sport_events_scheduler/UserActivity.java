@@ -31,8 +31,9 @@ public class UserActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         manageFragment(new UserEventsFragment());
 
-        Toast.makeText(getApplicationContext(), "Welcome, " +
-                getIntent().getStringExtra("user") + " !", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Hi, " +
+                getIntent().getStringExtra("user"), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "You are in <USER> page", Toast.LENGTH_SHORT).show();
 
         binding.bottomNavigation.setOnItemSelectedListener(item -> {
 
@@ -67,9 +68,4 @@ public class UserActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void show_my_activities(View view){
-        Toast.makeText(this, "Your reservation will show up here", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), ShowMyActivities.class);
-        startActivity(intent);
-    }
 }

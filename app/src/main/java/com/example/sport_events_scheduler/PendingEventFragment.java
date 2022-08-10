@@ -40,6 +40,11 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
         View view = inflater.inflate(R.layout.fragment_pending_event, container, false);
         getActivity().setTitle("View Pending Events");
 
+        Toast.makeText(getActivity(), "All pending events listed here.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Click to modify.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Accept/reject by clicking on the top-right conor", Toast.LENGTH_LONG).show();
+
+
         recyclerView = view.findViewById(R.id.pendingEventList);
         Remote remote = new Remote();
         ref = remote.getPendingEventRef();
