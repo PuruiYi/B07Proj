@@ -217,7 +217,4 @@ public class MainActivity extends AppCompatActivity {
         passwordText.setError(null);
         asAdmin.setChecked(false);
     }
-
-
-
 }

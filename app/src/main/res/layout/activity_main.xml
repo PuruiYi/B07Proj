@@ -150,11 +150,11 @@
         android:layout_marginStart="32dp"
         android:autoText="false"
         android:clickable="true"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:minHeight="48dp"
         android:onClick="trySignup"
         android:text="Don't have an account? Register"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="@color/purple_500"
         android:textStyle="bold"
         android:visibility="visible"
@@ -177,7 +177,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/welcome" />
-
     <CheckBox
         android:id="@+id/asAdmin"
         android:layout_width="wrap_content"
@@ -189,6 +188,5 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
