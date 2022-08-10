@@ -138,6 +138,7 @@ public class JoinOrQuitEventAdapter extends RecyclerView.Adapter<JoinOrQuitEvent
                     // If the user has already joined the event.
                     for (DataSnapshot user : snapshot.child("users").getChildren()) {
                         if (user.getKey().equals(parent.getStringExtra("user"))) {
+
                             return;
                         }
                     }
@@ -147,12 +148,14 @@ public class JoinOrQuitEventAdapter extends RecyclerView.Adapter<JoinOrQuitEvent
                     if (old != capacity) {
                         snapshot.getRef().child("joined").setValue(old + 1);
                         snapshot.getRef().child("users").child(parent.getStringExtra("user")).setValue("");
+
+                        // Track joined event in users side.
+                        accountRef.child(parent.getStringExtra("user")).child("joined").child(id).setValue(venue);
+                        holder.joinBtn.setVisibility(View.GONE);
+                        holder.quitBtn.setVisibility(View.VISIBLE);
+                        Toast.makeText(context.getApplicationContext(), "Joined", Toast.LENGTH_SHORT).show();
                     }
-                    // Track joined event in users side.
-                    accountRef.child(parent.getStringExtra("user")).child("joined").child(id).setValue(venue);
-                    holder.joinBtn.setVisibility(View.GONE);
-                    holder.quitBtn.setVisibility(View.VISIBLE);
-                    Toast.makeText(context.getApplicationContext(), "Joined", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
