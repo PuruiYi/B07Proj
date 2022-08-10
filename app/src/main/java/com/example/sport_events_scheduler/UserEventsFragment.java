@@ -69,7 +69,6 @@ public class UserEventsFragment extends Fragment implements VenueAdapter.VenueOn
                 venues.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
                     String venue = dataSnapshot.getKey();
                     venues.add(venue);
                 }

@@ -1,0 +1,71 @@
+It will be the last day of this Project.
+
+//Person 1
+
+Name: Chengye Wu
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 2
+
+Name: Jumana Fanous
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+  
+//Person 3
+
+Name: Barry Zheng
+
+What have you done since yesterday?
+	- CardView UI design...
+	- Events are distinguished between running, expired, and comming states. They are shown in different colors, and they are with different images embedded.
+	- Toast messages (tips) adjustment.
+
+What are you planning on doing today?
+	- When identifing the upcoming, expired, running events, we only compare hour of day and minute with the current time.
+	  Next, we might add a date to each event, and the date will be considered when identifying events' state.
+
+Any impediments or stumbling blocks?
+	- No.
+  
+//Person 4
+
+Name: Yuchen Jiang
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
+  
+//Person 5
+
+Name: Purui Yi
+
+What have you done since yesterday?
+	- Put points here ...
+
+What are you planning on doing today?
+	- Put points here ...
+
+Any impediments or stumbling blocks?
+	- Put points here ...
