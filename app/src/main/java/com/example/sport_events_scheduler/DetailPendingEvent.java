@@ -10,8 +10,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sport_events_scheduler.databinding.ActivityDetailPendingEventBinding;
@@ -27,6 +29,8 @@ public class DetailPendingEvent extends AppCompatActivity {
     private Event detailedEvent;
     private String id, name, start, end, location;
     private int capacity, joined;
+    TextView error_capacity;
+    TextView error_time;
 
     ActivityDetailPendingEventBinding binding;
     DatabaseReference databaseReference;
@@ -58,21 +62,27 @@ public class DetailPendingEvent extends AppCompatActivity {
         EditText startTimeView = findViewById(R.id.detailStartTime);
         EditText endTimeView = findViewById(R.id.detailEndTime);
         ImageButton clostBtn = findViewById(R.id.detailCloseBtn);
+        error_capacity = findViewById(R.id.error_capacity);
+        error_time = findViewById(R.id.error_time);
+
 
         venueView.setText(location);
         nameView.setText(name);
         capacityView.setText(String.valueOf(capacity));
         startTimeView.setText(start);
         endTimeView.setText(end);
+
         binding.detailAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Event modifiedEvent = getModifiedData();
-                updateData(modifiedEvent);
-                eventRef.child(modifiedEvent.getLocation()).child(modifiedEvent.getId()).setValue(modifiedEvent);
-                ref.child(modifiedEvent.getId()).removeValue();
-                Toast.makeText(DetailPendingEvent.this, "Accept event successfully", Toast.LENGTH_SHORT).show();
-
+                boolean isValid = eventValidity(modifiedEvent,view);
+                if(isValid) {
+                    updateData(modifiedEvent);
+                    eventRef.child(modifiedEvent.getLocation()).child(modifiedEvent.getId()).setValue(modifiedEvent);
+                    ref.child(modifiedEvent.getId()).removeValue();
+                    Toast.makeText(DetailPendingEvent.this, "Accept event successfully", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -80,7 +90,10 @@ public class DetailPendingEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Event modifiedEvent = getModifiedData();
-                updateData(modifiedEvent);
+                boolean isValid = eventValidity(modifiedEvent,view);
+                if (isValid){
+                    updateData(modifiedEvent);
+                }
             }
         });
 
@@ -93,6 +106,45 @@ public class DetailPendingEvent extends AppCompatActivity {
 
     }
 
+    private boolean eventValidity(Event modifiedEvent, View view){
+        error_capacity.setVisibility(view.INVISIBLE);
+        error_time.setVisibility(view.INVISIBLE);
+        boolean result = false;
+        Time st = new Time(modifiedEvent.getStart());
+        Time et = new Time(modifiedEvent.getEnd());
+
+        if (modifiedEvent.getCapacity() == 0 || st.compareTo(et)>=0 || !st.Time_Valid() || !et.Time_Valid()){
+            if(modifiedEvent.getCapacity() == 0) {
+                error_capacity.setText("capacity cannot be 0");
+                error_capacity.setVisibility(view.VISIBLE);
+            }
+            if (!st.Time_Valid() || !et.Time_Valid()){
+                if (!st.Time_Valid() && !et.Time_Valid()) {
+                    error_time.setText("Wrong format for start and end time");
+                    error_time.setVisibility(view.VISIBLE);
+                }
+                else if (!st.Time_Valid()){
+                    error_time.setText("Wrong format for start time");
+                    error_time.setVisibility(view.VISIBLE);
+                }
+                else{
+                    error_time.setText("Wrong format for end time");
+                    error_time.setVisibility(view.VISIBLE);
+                }
+            } else if (st.compareTo(et)>0) {
+                error_time.setText("Start time cannot be later than end time");
+                error_time.setVisibility(view.VISIBLE);
+            } else if(st.compareTo(et)==0) {
+                error_time.setText("Start time cannot equal to end time");
+                error_time.setVisibility(view.VISIBLE);
+            }
+        }else {
+            error_capacity.setVisibility(view.INVISIBLE);
+            result = true;
+        }
+        return result;
+    }
+
     private Event getModifiedData(){
         String m_venue = binding.detailVenue.getText().toString();
         String m_name = binding.detailName.getText().toString();
@@ -102,6 +154,7 @@ public class DetailPendingEvent extends AppCompatActivity {
         return new Event(id,m_name,m_capacity,joined,m_startTime,m_endTime,m_venue);
     }
 
+    //update to database
     private void updateData(Event modifiedEvent) {
         HashMap detailEventList = new HashMap();
 
