@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.sport_events_scheduler.databinding.ActivityDetailPendingEventBinding;
@@ -56,6 +57,7 @@ public class DetailPendingEvent extends AppCompatActivity {
         EditText capacityView = findViewById(R.id.detailCapacity);
         EditText startTimeView = findViewById(R.id.detailStartTime);
         EditText endTimeView = findViewById(R.id.detailEndTime);
+        ImageButton clostBtn = findViewById(R.id.detailCloseBtn);
 
         venueView.setText(location);
         nameView.setText(name);
@@ -79,6 +81,13 @@ public class DetailPendingEvent extends AppCompatActivity {
             public void onClick(View view) {
                 Event modifiedEvent = getModifiedData();
                 updateData(modifiedEvent);
+            }
+        });
+
+        clostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
