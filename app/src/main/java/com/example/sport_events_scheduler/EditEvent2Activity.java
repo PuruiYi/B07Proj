@@ -7,10 +7,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,13 +27,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class EditEvent2Activity extends AppCompatActivity {
     String name;
     int capacity;
     int joined;
     String location;
+    String date;
+    String month;
+    String day;
     String start;
     String end;
     String id;
@@ -38,6 +48,7 @@ public class EditEvent2Activity extends AppCompatActivity {
     EditText Capacity;
     EditText Joined;
     EditText Location;
+    EditText Date;
     EditText Start;
     EditText End;
     EditText Id;
@@ -65,6 +76,7 @@ public class EditEvent2Activity extends AppCompatActivity {
         this.capacity = intent.getIntExtra("capacity", 0);
         this.joined = intent.getIntExtra("joined", 0);
         this.location = intent.getStringExtra("location");
+        this.date = intent.getStringExtra("date");
         this.start = intent.getStringExtra("start");
         this.end = intent.getStringExtra("end");
         this.id = intent.getStringExtra("id");
@@ -74,6 +86,7 @@ public class EditEvent2Activity extends AppCompatActivity {
         this.Capacity = (EditText)findViewById(R.id.eventCapacity);
         this.Joined = (EditText)findViewById(R.id.eventJoined);
         this.Location = (EditText)findViewById(R.id.eventLocation);
+        this.Date = (EditText)findViewById(R.id.eventDate);
         this.Start = (EditText)findViewById(R.id.eventStartAt);
         this.End = (EditText)findViewById(R.id.eventEndAt);
         this.Id = (EditText)findViewById(R.id.eventId);
@@ -85,6 +98,7 @@ public class EditEvent2Activity extends AppCompatActivity {
         this.Capacity.setText(String.valueOf(this.capacity));
         this.Joined.setText(String.valueOf(this.joined));
         this.Location.setText(this.location);
+        this.Date.setText(this.date);
         this.Start.setText(this.start);
         this.End.setText(this.end);
         this.Id.setText(this.id);
@@ -96,6 +110,7 @@ public class EditEvent2Activity extends AppCompatActivity {
         NonEditable(this.Start);
         NonEditable(this.End);
         NonEditable(this.Id);
+        NonEditable(this.Date);
 
         this.Modify = (Button)findViewById(R.id.button1);
         this.Delete = (Button)findViewById(R.id.button2);
@@ -231,11 +246,36 @@ public class EditEvent2Activity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void Delete_Event(View view){
-        String id1 = new String(this.id);
-        Delete(id1);
-        Linear.removeViews(0, 8);
-        this.Text.setText("Delete success");
-        this.Text.setVisibility(View.VISIBLE);
+        if(Delete.getText().toString().equals("Delete")) {
+            String id1 = new String(this.id);
+            Delete(id1);
+            Linear.removeViews(0, 8);
+            this.Text.setText("Delete success. Back to the previous page in 5 secondds.");
+            this.Text.setVisibility(View.VISIBLE);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    EditEvent2Activity.this.finish();
+                }
+            }, 5000);
+        }
+        else{
+            NonEditable(this.Name);
+            NonEditable(this.Capacity);
+            NonEditable(this.Location);
+            NonEditable(this.Start);
+            NonEditable(this.End);
+            NonEditable(this.Date);
+            this.Name.setText(this.name);
+            this.Capacity.setText(String.valueOf(this.capacity));
+            this.Date.setText(this.date);
+            this.Start.setText(this.start);
+            this.End.setText(this.end);
+            this.Location.setText(this.location);
+            Delete.setText("Delete");
+            Modify.setText("Modify");
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -246,8 +286,9 @@ public class EditEvent2Activity extends AppCompatActivity {
             Editable(this.Start);
             Editable(this.End);
             Editable(this.Location);
+            Editable(this.Date);
             this.Modify.setText("Submit");
-            this.Delete.setVisibility(View.INVISIBLE);
+            this.Delete.setText("Cancel");
             this.Text.setVisibility(View.INVISIBLE);
             return;
         }
@@ -262,6 +303,10 @@ public class EditEvent2Activity extends AppCompatActivity {
             this.Text.setText("Location can not be empty");
             this.Text.setVisibility(View.VISIBLE);
             return;
+        }
+
+        if(this.Date.getText().toString().isEmpty()){
+            this.Text.setText("Date can not be empty");
         }
 
         if(this.Start.getText().toString().isEmpty()){
@@ -282,17 +327,23 @@ public class EditEvent2Activity extends AppCompatActivity {
             return;
         }
 
-        Time start_time = new Time(this.Start.getText().toString());
-        Time end_time = new Time(this.End.getText().toString());
+        Time start_time = new Time(this.Start.getText().toString(), this.Date.getText().toString());
+        Time end_time = new Time(this.End.getText().toString(), this.Date.getText().toString());
 
-        if(!start_time.Isvalid()){
+        if(!start_time.Date_Valid()){
+            this.Text.setText(("Date is not valid"));
+            this.Text.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        if(!start_time.Time_Valid()){
             this.Text.setText("Start time is not valid");
             this.Text.setVisibility(View.VISIBLE);
             return;
         }
 
-        if(!end_time.Isvalid()){
-            this.Text.setText("end time is not valid");
+        if(!end_time.Time_Valid()){
+            this.Text.setText("End time is not valid");
             this.Text.setVisibility(View.VISIBLE);
             return;
         }
@@ -304,8 +355,9 @@ public class EditEvent2Activity extends AppCompatActivity {
         }
 
         Date now = Calendar.getInstance().getTime();
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        Time local_time = new Time(format.format(now));
+        SimpleDateFormat time_format = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+        Time local_time = new Time(time_format.format(now), date_format.format(now));
 
         if(start_time.compareTo(local_time) <= 0){
             this.Text.setText("Time has passed");
@@ -319,73 +371,165 @@ public class EditEvent2Activity extends AppCompatActivity {
             return;
         }
 
+        rf = remote.getAvenueRef(this.Location.getText().toString());
+
         if(this.location.equals(this.Location.getText().toString())){
-            Map<String, Object> map = new LinkedHashMap<>();
-            map.put("name", this.Name.getText().toString());
-            map.put("capacity", Integer.parseInt(this.Capacity.getText().toString()));
-            map.put("start", this.Start.getText().toString());
-            map.put("end",this.End.getText().toString());
+                    rf.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for(DataSnapshot datasnapshot: snapshot.getChildren()){
+                                //TODO: just for test
+                                if(!datasnapshot.hasChild("date"))
+                                    continue;
 
-            rf = remote.getAvenueRef(this.location).child(this.id);
-            rf.updateChildren(map);
-            this.name = map.get("name").toString();
-            this.capacity = Integer.parseInt(map.get("capacity").toString());
-            this.start = map.get("start").toString();
-            this.end = map.get("end").toString();
+                                if(datasnapshot.getKey().equals(id))
+                                    continue;
 
-            NonEditable(this.Name);
-            NonEditable(this.Capacity);
-            NonEditable(this.Start);
-            NonEditable(this.End);
-            NonEditable(this.Location);
+                                Time start1 = new Time(datasnapshot.child("start").getValue().toString(),
+                                        datasnapshot.child("date").getValue().toString());
+                                Time end1 = new Time(datasnapshot.child("end").getValue().toString(),
+                                        datasnapshot.child("date").getValue().toString());
 
-            this.Modify.setText("Modify");
+                                if(Time.Time_Conflict(start_time, end_time, start1, end1)){
+                                    rf.removeEventListener(this);
+                                    Text.setText("Time conflict");
+                                    Text.setVisibility(View.VISIBLE);
+                                    return;
+                                }
+                            }
 
-            this.Delete.setVisibility(View.VISIBLE);
+                            rf.removeEventListener(this);
 
-            this.Text.setText("Modify success");
-            this.Text.setVisibility(View.VISIBLE);
-            return;
+                            Map<String, Object> map = new LinkedHashMap<>();
+                            map.put("name", Name.getText().toString());
+                            map.put("capacity", Integer.parseInt(Capacity.getText().toString()));
+                            map.put("date", Date.getText().toString());
+                            map.put("start", Start.getText().toString());
+                            map.put("end",End.getText().toString());
+
+                            rf = remote.getAvenueRef(location).child(id);
+                            rf.updateChildren(map);
+                            name = map.get("name").toString();
+                            capacity = Integer.parseInt(map.get("capacity").toString());
+                            start = map.get("start").toString();
+                            end = map.get("end").toString();
+                            date = map.get("date").toString();
+
+
+                            NonEditable(Name);
+                            NonEditable(Capacity);
+                            NonEditable(Start);
+                            NonEditable(End);
+                            NonEditable(Location);
+                            NonEditable(Date);
+
+                            Modify.setText("Modify");
+                            Modify.setClickable(false);
+                            Delete.setClickable(false);
+
+                            Delete.setVisibility(View.VISIBLE);
+
+                            Text.setText("Modify success. Back to the previous page in 5 seconds.");
+                            Text.setVisibility(View.VISIBLE);
+                            Timer  timer = new Timer();
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    EditEvent2Activity.this.finish();
+                                }
+                            }, 5000);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    return;
         }
 
-        String id1 = new String(id);
+        rf.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot datasnapshot: snapshot.getChildren()){
+                    //TODO: just for test
+                    if(!datasnapshot.hasChild("date"))
+                        continue;
 
-        Delete(id1);
 
-        DatabaseReference rf = remote.getAvenueRef(Location.getText().toString()).push();
-        Event event = new Event(rf.getKey(), Name.getText().toString(),
-                Integer.parseInt(Capacity.getText().toString()),
-                Integer.parseInt(Joined.getText().toString()),
-                Start.getText().toString(), End.getText().toString(),
-                Location.getText().toString());
-        rf.setValue(event);
-        Map<String, Object> map = new LinkedHashMap<>();
-        for(String user: users){
-            map.put(user, "");
-        }
-        rf.updateChildren(map);
+                    Time start2 = new Time(datasnapshot.child("start").getValue().toString(),
+                            datasnapshot.child("date").getValue().toString());
+                    Time end2 = new Time(datasnapshot.child("end").getValue().toString(),
+                            datasnapshot.child("date").getValue().toString());
+                    if(Time.Time_Conflict(start_time, end_time, start2, end2)){
+                        Text.setText("Time conflict");
+                        Text.setVisibility(View.VISIBLE);
+                        rf.removeEventListener(this);
+                        return;
+                    }
+                }
 
-        id = rf.getKey();
-        location = Location.getText().toString();
-        name = Name.getText().toString();
-        capacity = Integer.parseInt(Capacity.getText().toString());
-        start = Start.getText().toString();
-        end = End.getText().toString();
+                rf.removeEventListener(this);
 
-        Id.setText(id);
+                String id1 = new String(id);
 
-        NonEditable(Name);
-        NonEditable(Capacity);
-        NonEditable(Start);
-        NonEditable(End);
-        NonEditable(Location);
+                Delete(id1);
 
-        Modify.setText("Modify");
+                DatabaseReference rf = remote.getAvenueRef(Location.getText().toString()).push();
+                Event event = new Event(rf.getKey(), Name.getText().toString(),
+                        Integer.parseInt(Capacity.getText().toString()),
+                        Integer.parseInt(Joined.getText().toString()),
+                        Date.getText().toString(), Start.getText().toString(),
+                        End.getText().toString(), Location.getText().toString());
+                rf.setValue(event);
+                Map<String, Object> map = new LinkedHashMap<>();
+                for(String user: users){
+                    map.put(user, "");
+                }
+                rf.updateChildren(map);
 
-        Delete.setVisibility(View.VISIBLE);
+                id = rf.getKey();
+                location = Location.getText().toString();
+                name = Name.getText().toString();
+                capacity = Integer.parseInt(Capacity.getText().toString());
+                date = Date.getText().toString();
+                start = Start.getText().toString();
+                end = End.getText().toString();
 
-        Text.setText("Modify success");
-        Text.setVisibility(View.VISIBLE);
+                Id.setText(id);
+
+                NonEditable(Name);
+                NonEditable(Capacity);
+                NonEditable(Start);
+                NonEditable(End);
+                NonEditable(Location);
+                NonEditable(Date);
+
+                Modify.setText("Modify");
+
+                Delete.setVisibility(View.VISIBLE);
+
+                Text.setText("Modify success. Back to the previous page in 5 seconds.");
+                Text.setVisibility(View.VISIBLE);
+
+                Modify.setClickable(false);
+                Delete.setClickable(false);
+
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        EditEvent2Activity.this.finish();
+                    }
+                }, 5000);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

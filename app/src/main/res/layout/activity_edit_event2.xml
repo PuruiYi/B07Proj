@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:id="@+id/textView2"
@@ -100,7 +100,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,7 +125,32 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date : "
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/eventDate"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:focusable="true"
+                android:hint="yyyy-mm-dd"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -140,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
-                android:hint="Start time"
+                android:hint="HH:mm"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -150,7 +175,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:focusable="true"
-                android:hint="End time"
+                android:hint="HH:mm"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -175,7 +200,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_marginStart="120dp">
 
             <TextView
                 android:layout_width="wrap_content"

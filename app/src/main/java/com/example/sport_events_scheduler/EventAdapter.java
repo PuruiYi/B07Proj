@@ -46,6 +46,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.name.setText(event.getName());
         holder.capacity.setText(Integer.toString(event.getCapacity()));
         holder.joined.setText(Integer.toString(event.getJoined()));
+        holder.date.setText(event.getDate());
         holder.time.setText(event.getStart() + " - " + event.getEnd());
         holder.location.setText(event.getLocation());
 
@@ -67,7 +68,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView id, name, capacity, joined, time, location;
+        TextView id, name, capacity, joined, date, time, location;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +77,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             name = itemView.findViewById(R.id.eventName);
             capacity = itemView.findViewById(R.id.eventCapacity);
             joined = itemView.findViewById(R.id.eventJoined);
+            date = itemView.findViewById(R.id.eventDate);
             time = itemView.findViewById(R.id.eventTime);
             location = itemView.findViewById(R.id.eventLocation);
         }

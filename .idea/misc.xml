@@ -53,6 +53,10 @@
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_new_avenue.xml" value="0.22" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_user.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/activity_edit_event2.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/event.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/venue.xml" value="0.23125" />
       </map>
     </option>
   </component>
