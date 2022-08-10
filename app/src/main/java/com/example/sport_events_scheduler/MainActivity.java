@@ -128,6 +128,9 @@ public class MainActivity extends AppCompatActivity {
         /** Retrieve inputs from the View. */
         String username = userNameText.getText().toString();
         String password = passwordText.getText().toString();
+        /** Validate Inputs. */
+        if (!areValidInputs(username, password))
+            return;
         /** Database. */
         DatabaseReference ref = remote.getAccountRef();
         /** Validate if the current username has been registered. */
@@ -143,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 /** Not yet. */
                 else{
                     /** Validate inputs. */
-                    if (userNameText.getError() == null && areValidInputs(username, password)) {
+                    if (userNameText.getError() == null) {
                         /** Clear errors. */
                         userNameText.setError(null);
                         passwordText.setError(null);
@@ -156,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             user = new User(username, password);
                         }
                         ref.child(username).setValue(user);
+                        tryLogin(null);
                         Toast.makeText(getApplicationContext(), "Signup Successfully", Toast.LENGTH_SHORT).show();
                     }
                     clearText();

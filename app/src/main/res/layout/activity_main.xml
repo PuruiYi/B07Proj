@@ -107,7 +107,7 @@
         android:minHeight="48dp"
         android:onClick="tryLogin"
         android:text="Already have an account? Login"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="@color/purple_500"
         android:textStyle="bold"
         android:visibility="gone"
