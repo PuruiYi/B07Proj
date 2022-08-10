@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Sport_events_scheduler"
         tools:targetApi="31">
         <activity
+            android:name=".EditEvent2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".EditEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="false" />
         <activity
@@ -27,11 +33,15 @@
         <activity
             android:name=".DetailPendingEvent"
             android:exported="false"
-            android:parentActivityName=".AdminActivity"/>
+            android:parentActivityName=".AdminActivity" />
+        <activity
+            android:name=".AddNewEvent"
+            android:exported="false"
+            android:theme="@style/DialogActivity" />
         <activity
             android:name=".DisplayActivitiesAtVenue"
-            android:theme="@style/DisplayActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:theme="@style/DisplayActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

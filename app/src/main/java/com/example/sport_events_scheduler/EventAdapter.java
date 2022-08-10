@@ -15,11 +15,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
 
     Context context;
     ArrayList<Event> events;
+    EventOnClickListener listener;
+
 
     public EventAdapter(Context context, ArrayList<Event> events) {
         this.context = context;
         this.events = events;
+        this.listener = null;
     }
+
+    public EventAdapter(Context context, ArrayList<Event> events, EventOnClickListener listener) {
+        this.context = context;
+        this.events = events;
+        this.listener = listener;
+    }
+
 
     @NonNull
     @Override
@@ -38,6 +48,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
         holder.joined.setText(Integer.toString(event.getJoined()));
         holder.time.setText(event.getStart() + " - " + event.getEnd());
         holder.location.setText(event.getLocation());
+
+        if(listener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.displayActivity(view);
+                }
+            });
+        }
 
     }
 
@@ -60,6 +79,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
             time = itemView.findViewById(R.id.eventTime);
             location = itemView.findViewById(R.id.eventLocation);
         }
+    }
+
+    public interface EventOnClickListener {
+        void displayActivity(View view);
     }
 
 }

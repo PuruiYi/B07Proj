@@ -1,65 +1,80 @@
 package com.example.sport_events_scheduler;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EventFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class EventFragment extends Fragment {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.ArrayList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class EventFragment extends Fragment implements VenueAdapter.VenueOnClickListener {
 
-    public EventFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EventFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EventFragment newInstance(String param1, String param2) {
-        EventFragment fragment = new EventFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    View view;
+    DatabaseReference ref;
+    RecyclerView recyclerView;
+    VenueAdapter adapter;
+    ArrayList<String> venues;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        getActivity().setTitle("View Existing Events");
-        return inflater.inflate(R.layout.fragment_event, container, false);
+        view = inflater.inflate(R.layout.fragment_admin_add_venue, container, false);
+
+        /** Initializer. */
+        Remote remote = new Remote();
+        ref = remote.getEventRef();
+        recyclerView = view.findViewById(R.id.adminVenueList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        venues = new ArrayList<>();
+        adapter = new VenueAdapter(this.getContext(), venues, this);
+        recyclerView.setAdapter(adapter);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                venues.clear();
+
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+
+                    String venue = dataSnapshot.getKey();
+                    venues.add(venue);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return view;
     }
+
+    @Override
+    public void displayActivity(View view) {
+        Intent intent = new Intent(this.getActivity(), EditEventActivity.class);
+        TextView location = view.findViewById(R.id.nameAvenueLabel);
+        intent.putExtra("location", location.getText().toString());
+        startActivity(intent);
+    }
+
 }
