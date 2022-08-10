@@ -1,25 +1,30 @@
 package com.example.sport_events_scheduler;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,9 +32,11 @@ public class AddEventDialogFragment extends DialogFragment {
 
     private Remote remote;
     private String venue;
-    private EditText nameText, capacityText, startText, endText;
+    private EditText nameText, capacityText;
+    private TextView timeText, dateText, startText, endText;
     private Button addBtn;
     private ImageButton closeBtn;
+    private int tv_year, tv_month, tv_day, start_hour, start_min, end_hour, end_min;
 
     public AddEventDialogFragment(String venue) {
         this.venue = venue;
@@ -52,10 +59,15 @@ public class AddEventDialogFragment extends DialogFragment {
         remote = new Remote();
         nameText = view.findViewById(R.id.nameVenue);
         capacityText = view.findViewById(R.id.capacityVenue);
+        timeText = view.findViewById(R.id.event_time);
+        dateText = view.findViewById(R.id.dateVenue);
         startText = view.findViewById(R.id.startVenue);
         endText = view.findViewById(R.id.endVenue);
         addBtn = view.findViewById(R.id.addButton);
-
+        closeBtn = view.findViewById(R.id.addEventCloseBtn);
+        //
+        datePickerSetup();
+        timePickerSetup();
         // Builder setup.
         builder.setView(view);
 
@@ -66,15 +78,116 @@ public class AddEventDialogFragment extends DialogFragment {
                    dismiss();
             }
         });
-        /*
+
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
             }
-        });*/
+        });
 
         return builder.create();
+    }
+
+    private void datePickerSetup() {
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        dateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        dateText.setError(null);
+                        tv_year = year;
+                        tv_month = month;
+                        tv_day = day;
+                        dateText.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime()));
+                    }
+
+                },year,month,day);
+                datePicker.getDatePicker().setMinDate(calendar.getTimeInMillis() - 1000);
+                datePicker.show();
+            }
+        });
+    }
+    private void timePickerSetup() {
+        timeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Clear previous inputs.
+                timeText.setText("");
+                startText.setText("");
+                endText.setText("");
+
+                TimePickerDialog startTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        timeText.setError(null);
+
+                        Calendar calendar = Calendar.getInstance();
+                        start_hour = hour;
+                        start_min = minute;
+                        calendar.set(Calendar.HOUR_OF_DAY, hour);
+                        calendar.set(Calendar.MINUTE, minute);
+                        if (calendar.before(Calendar.getInstance())) {
+                            Toast.makeText(getActivity(), "The start time has already passed.", Toast.LENGTH_LONG).show();
+                            timeText.setError("Invalid start time");
+                        }
+                        else {
+                            String startTime = new SimpleDateFormat("HH:mm").format(calendar.getTime());
+                            startText.setText(startTime);
+                            timeText.setText(startTime);
+                        }
+                        timeText.setText(timeText.getText().toString() + " - ");
+                    }
+                },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
+                startTimePicker.setTitle("Select a start time");
+
+                TimePickerDialog endTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                        timeText.setError(null);
+
+                        Calendar end = Calendar.getInstance();
+                        Calendar start = Calendar.getInstance();
+                        start.set(Calendar.HOUR_OF_DAY, start_hour);
+                        start.set(Calendar.MINUTE, start_min);
+
+                        end_hour = hour;
+                        end_min = minute;
+                        end.set(Calendar.HOUR_OF_DAY, hour);
+                        end.set(Calendar.MINUTE, minute);
+                        if (end.before(start) || (start_hour == end_hour && start_min == end_min))
+                            Toast.makeText(getActivity(), "The end time should not be equal or earlier than start time", Toast.LENGTH_LONG).show();
+                        else {
+                            String startTime = timeText.getText().toString();
+                            String endTime = new SimpleDateFormat("HH:mm").format(end.getTime());
+                            endText.setText(endTime);
+                            timeText.setText(startTime + endTime);
+                        }
+                    }
+                },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
+                endTimePicker.setTitle("Select a end time");
+
+                startTimePicker.show();
+                startTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (timeText.getError() == null) {
+                            endTimePicker.show();
+                            Toast.makeText(getActivity(), "Time to select a end time", Toast.LENGTH_LONG).show();
+                        }
+                        else
+                            timeText.setError(null);
+                    }
+                });
+
+            }
+        });
+
     }
 
     private boolean eventRequest() {
@@ -82,37 +195,43 @@ public class AddEventDialogFragment extends DialogFragment {
         /** Event info. */
         String name = nameText.getText().toString();
         String capacity = capacityText.getText().toString();
+        String date = dateText.getText().toString();
         String start = startText.getText().toString();
         String end = endText.getText().toString();
         /** Validate Inputs. */
-        if (!isValidEvent(name, capacity, start, end))
+        if (!isValidEvent(name, capacity, date, start, end))
             return false;
         /** Clear errors. */
         nameText.setError(null);
         capacityText.setError(null);
+        dateText.setError(null);
+        timeText.setError(null);
         startText.setError(null);
         endText.setError(null);
         /** Reference to the path. */
         DatabaseReference ref = remote.getPendingEventRef().push();
         String id = ref.getKey();
         /** SportEvent Object. */
-        Event event = new Event(id, name, Integer.parseInt(capacity), 0, start, end, venue);
+        Event event = new Event(id, name, Integer.parseInt(capacity), 0, date, start, end, venue);
         /** Push data into the database. */
         ref.setValue(event);
         /** Clear Inputs. */
         nameText.setText("");
         capacityText.setText("");
+        dateText.setText("");
+        timeText.setText("");
         startText.setText("");
         endText.setText("");
         return true;
     }
 
     /** Validate event information provided by users. */
-    private boolean isValidEvent(String name, String capacity, String start, String end) {
+    private boolean isValidEvent(String name, String capacity, String date, String start, String end) {
         Pattern pattern = Pattern.compile("\\s*");
         Pattern time = Pattern.compile("([01][0-9]|2[0-3]):[0-5][0-9]");
         Matcher nameM = pattern.matcher(name);
         Matcher capacityM = pattern.matcher(capacity);
+        Matcher dateM = pattern.matcher(date);
         Matcher startM = time.matcher(start);
         Matcher endM = time.matcher(end);
         if (nameM.matches()) {
@@ -125,14 +244,19 @@ public class AddEventDialogFragment extends DialogFragment {
             capacityText.requestFocus();
             return false;
         }
+        if (dateM.matches()) {
+            dateText.setError("Date cannot be empty.");
+            dateText.requestFocus();
+            return false;
+        }
         if (!startM.matches()) {
-            startText.setError("Time should be in 24-hour format.");
-            startText.requestFocus();
+            timeText.setError("Invalid start time.");
+            timeText.requestFocus();
             return false;
         }
         if (!endM.matches()) {
-            endText.setError("Time should be in 24-hour format.");
-            endText.requestFocus();
+            timeText.setError("Invalid end time.");
+            timeText.requestFocus();
             return false;
         }
         return true;
