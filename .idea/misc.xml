@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1745" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview__bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_blue_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_sky_blue_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_yellow_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardviewbg.xml" value="0.1785" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1745" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/imagebtn_selector.xml" value="0.1785" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_add_avenue.xml" value="0.41953125" />
