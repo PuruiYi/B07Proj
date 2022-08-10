@@ -13,13 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/eventIdMg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:clickable="false"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -35,7 +43,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/eventName"
+                    android:id="@+id/eventNameMg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="lalal"
@@ -59,7 +67,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/eventCapacity"
+                    android:id="@+id/eventCapacityMg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="12"
@@ -86,7 +94,7 @@
                     tools:layout_editor_absoluteY="0dp" />
 
                 <TextView
-                    android:id="@+id/eventJoined"
+                    android:id="@+id/eventJoinedMg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
@@ -111,7 +119,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/eventLocation"
+                    android:id="@+id/eventLocationMg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="N/A"
@@ -135,30 +143,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/eventTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="N/A"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date : "
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/eventDate"
+                    android:id="@+id/eventTimeMg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="N/A"
@@ -171,9 +156,8 @@
 
         </LinearLayout>
 
-
         <ImageView
-            android:id="@+id/expriedImg"
+            android:id="@+id/expriedImgMg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -181,14 +165,18 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/eventId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="invisible" />
+        <Button
+            android:id="@+id/delBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Delete"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.cardview.widget.CardView>

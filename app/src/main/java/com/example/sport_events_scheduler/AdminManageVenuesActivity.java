@@ -18,19 +18,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DisplayActivitiesAtVenue extends AppCompatActivity {
+public class AdminManageVenuesActivity extends AppCompatActivity {
 
     Remote remote;
     Intent parent;
     DatabaseReference ref;
     RecyclerView recyclerView;
-    EventAdapter adapter;
+    AdminEventAdapter adapter;
     ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_activities_at_avenue);
+        setContentView(R.layout.admin_manage_avenue);
 
         /** Initializer. */
         remote = new Remote();
@@ -41,7 +41,7 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         events = new ArrayList<>();
-        adapter = new EventAdapter(this, events);
+        adapter = new AdminEventAdapter(this, events);
         recyclerView.setAdapter(adapter);
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -51,7 +51,7 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
                 events.clear();
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    System.out.println(dataSnapshot.getValue());
+
                     Event event = dataSnapshot.getValue(Event.class);
                     events.add(event);
 
@@ -79,5 +79,4 @@ public class DisplayActivitiesAtVenue extends AppCompatActivity {
         DialogFragment dialog = new AddEventDialogFragment(parent.getStringExtra("location"));
         dialog.show(getSupportFragmentManager(), "AddEventDialog");
     }
-
 }

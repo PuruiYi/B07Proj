@@ -104,7 +104,8 @@ public class AddEventDialogFragment extends DialogFragment {
                         tv_year = year;
                         tv_month = month;
                         tv_day = day;
-                        dateText.setText(DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime()));
+                        calendar.set(year, month, day);
+                        dateText.setText(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
                     }
 
                 },year,month,day);
@@ -121,6 +122,7 @@ public class AddEventDialogFragment extends DialogFragment {
                 timeText.setText("");
                 startText.setText("");
                 endText.setText("");
+                timeText.setError(null);
 
                 TimePickerDialog startTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -133,8 +135,7 @@ public class AddEventDialogFragment extends DialogFragment {
                         calendar.set(Calendar.HOUR_OF_DAY, hour);
                         calendar.set(Calendar.MINUTE, minute);
                         if (calendar.before(Calendar.getInstance())) {
-                            Toast.makeText(getActivity(), "The start time has already passed.", Toast.LENGTH_LONG).show();
-                            timeText.setError("Invalid start time");
+                            timeText.setError("The start time has passed.");
                         }
                         else {
                             String startTime = new SimpleDateFormat("HH:mm").format(calendar.getTime());
@@ -146,45 +147,51 @@ public class AddEventDialogFragment extends DialogFragment {
                 },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
                 startTimePicker.setTitle("Select a start time");
 
-                TimePickerDialog endTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        timeText.setError(null);
 
-                        Calendar end = Calendar.getInstance();
-                        Calendar start = Calendar.getInstance();
-                        start.set(Calendar.HOUR_OF_DAY, start_hour);
-                        start.set(Calendar.MINUTE, start_min);
 
-                        end_hour = hour;
-                        end_min = minute;
-                        end.set(Calendar.HOUR_OF_DAY, hour);
-                        end.set(Calendar.MINUTE, minute);
-                        if (end.before(start) || (start_hour == end_hour && start_min == end_min))
-                            Toast.makeText(getActivity(), "The end time should not be equal or earlier than start time", Toast.LENGTH_LONG).show();
-                        else {
-                            String startTime = timeText.getText().toString();
-                            String endTime = new SimpleDateFormat("HH:mm").format(end.getTime());
-                            endText.setText(endTime);
-                            timeText.setText(startTime + endTime);
-                        }
-                    }
-                },Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
-                endTimePicker.setTitle("Select a end time");
 
-                startTimePicker.show();
                 startTimePicker.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
                         if (timeText.getError() == null) {
+                            TimePickerDialog endTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+                                @Override
+                                public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                                    timeText.setError(null);
+
+                                    Calendar end = Calendar.getInstance();
+                                    Calendar start = Calendar.getInstance();
+                                    start.set(Calendar.HOUR_OF_DAY, start_hour);
+                                    start.set(Calendar.MINUTE, start_min);
+
+                                    end_hour = hour;
+                                    end_min = minute;
+                                    end.set(Calendar.HOUR_OF_DAY, hour);
+                                    end.set(Calendar.MINUTE, minute);
+                                    if (end.before(start) || (start_hour == end_hour && start_min == end_min))
+                                        timeText.setError("The end time should not be earlier.");
+                                    else {
+                                        String startTime = timeText.getText().toString();
+                                        String endTime = new SimpleDateFormat("HH:mm").format(end.getTime());
+                                        endText.setText(endTime);
+                                        timeText.setText(startTime + endTime);
+                                    }
+                                }
+                            },start_hour, start_min, true);
+                            endTimePicker.setTitle("Select a end time");
                             endTimePicker.show();
                             Toast.makeText(getActivity(), "Time to select a end time", Toast.LENGTH_LONG).show();
                         }
-                        else
-                            timeText.setError(null);
                     }
                 });
 
+                startTimePicker.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        timeText.setError("Select start time action cancelled.");
+                    }
+                });
+                startTimePicker.show();
             }
         });
 

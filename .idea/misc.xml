@@ -4,13 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1745" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview__bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_blue_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_purple_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_sky_blue_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardview_yellow_bg.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/cardviewbg.xml" value="0.1785" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1745" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/imagebtn_join.xml" value="0.1785" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/imagebtn_quit.xml" value="0.1785" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/drawable/imagebtn_selector.xml" value="0.1785" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_add_avenue.xml" value="0.41953125" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_admin.xml" value="0.43046875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_admin2.xml" value="0.287109375" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_admin_manage_venues.xml" value="0.21736111111111112" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_detail_pending_event.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_display_activities_at_avenue.xml" value="0.25" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_edit_event.xml" value="0.21736111111111112" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_edit_event2.xml" value="0.21736111111111112" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_login.xml" value="0.43046875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_new_avenue.xml" value="0.41953125" />
@@ -23,16 +34,24 @@
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/activity_user_acitivity2.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/add_event.xml" value="0.33" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/add_venue.xml" value="0.33" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/adminManageEvent.xml" value="0.21736111111111112" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/admin_event.xml" value="0.1" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/admin_manage_avenue.xml" value="0.21736111111111112" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/avenue.xml" value="0.4296875" />
-        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/event.xml" value="0.43046875" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/display_upcoming_events.xml" value="0.21736111111111112" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/event.xml" value="0.1" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_admin_add_venue.xml" value="0.21736111111111112" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_dashboard.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_event.xml" value="0.20625" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_pending_event.xml" value="0.20625" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_user_events.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_user_schedule.xml" value="0.14921875" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/fragment_user_upcoming_events.xml" value="0.21736111111111112" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/item.xml" value="0.20625" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/join_event.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/my_activities_list.xml" value="0.287109375" />
+        <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/my_schedule_layout.xml" value="0.287109375" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/layout/venue.xml" value="0.20625" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/menu/bottom_nav_bar.xml" value="0.14921875" />
         <entry key="..\:/ComputerScience/AndroidProjects/sport_events_scheduler/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14921875" />
@@ -53,6 +72,10 @@
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_new_avenue.xml" value="0.22" />
         <entry key="..\:/Users/Perry/Desktop/B07Proj/main-branch/app/src/main/res/layout/activity_user.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_edit_event.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/activity_edit_event2.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/event.xml" value="0.23125" />
+        <entry key="app/src/main/res/layout/venue.xml" value="0.23125" />
       </map>
     </option>
   </component>

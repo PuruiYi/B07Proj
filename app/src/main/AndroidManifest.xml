@@ -16,20 +16,30 @@
         android:theme="@style/Theme.Sport_events_scheduler"
         tools:targetApi="31">
         <activity
+            android:name=".AdminManageVenuesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditEvent2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".EditEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="false" />
         <activity
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ShowMyActivities"
-            android:exported="false" />
-        <activity
             android:name=".DetailPendingEvent"
             android:exported="false"
-            android:parentActivityName=".AdminActivity"/>
+            android:parentActivityName=".AdminActivity" />
         <activity
             android:name=".DisplayActivitiesAtVenue"
+            android:exported="false"
+            android:theme="@style/DisplayActivity" />
+        <activity
+            android:name=".UserUpcomingEvent"
             android:theme="@style/DisplayActivity"
             android:exported="false"/>
         <activity
