@@ -123,13 +123,13 @@ public class Time extends Date1 implements Comparable<Time>{
         treeset.add(start2);
         treeset.add(end2);
 
-        if(treeset.size() != 4)
+        if(treeset.size() == 2)
             return true;
 
         Time[] time_array = new Time[treeset.size()];
         treeset.toArray(time_array);
         int index = Arrays.binarySearch(time_array, start1);
-        if(index == 3)
+        if(index == time_array.length - 1)
             return true;
 
         return !time_array[index + 1].equals(end1);
