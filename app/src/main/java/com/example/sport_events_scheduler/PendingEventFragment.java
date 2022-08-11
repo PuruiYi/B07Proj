@@ -35,6 +35,7 @@ public class PendingEventFragment extends Fragment implements PendingEventAdapte
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 

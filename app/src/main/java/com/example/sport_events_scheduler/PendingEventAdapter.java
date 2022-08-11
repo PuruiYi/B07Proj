@@ -37,6 +37,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
         Event pendingEvent = pendingEvents.get(position);
         holder.venueView.setText(pendingEvent.getLocation());
         holder.eventTypeView.setText(pendingEvent.getName());
+        holder.dateView.setText(pendingEvent.getDate());
         holder.timeView.setText(pendingEvent.getStart() + " - " + pendingEvent.getEnd());
         holder.capacityView.setText(String.valueOf(pendingEvent.getCapacity()));
 
@@ -71,7 +72,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView venueView, eventTypeView, timeView, capacityView, optionView;
+        TextView venueView, eventTypeView, timeView, capacityView, optionView, dateView;
         OnItemClickListener listener;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
@@ -79,6 +80,7 @@ public class PendingEventAdapter extends RecyclerView.Adapter<PendingEventAdapte
             this.listener = listener;
             venueView = itemView.findViewById(R.id.tvVenue);
             eventTypeView = itemView.findViewById(R.id.tvEvent);
+            dateView = itemView.findViewById(R.id.tvDate);
             timeView = itemView.findViewById(R.id.tvTime);
             capacityView = itemView.findViewById(R.id.tvCapacity);
             optionView = itemView.findViewById(R.id.tvOption);

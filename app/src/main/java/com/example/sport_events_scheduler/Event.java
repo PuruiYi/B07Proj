@@ -43,7 +43,9 @@ public class Event implements Parcelable {
         id = in.readString();
         name = in.readString();
         capacity = in.readInt();
+
         joined = in.readInt();
+        date = in.readString();
         start = in.readString();
         end = in.readString();
         location = in.readString();
@@ -100,6 +102,7 @@ public class Event implements Parcelable {
         parcel.writeString(name);
         parcel.writeInt(capacity);
         parcel.writeInt(joined);
+        parcel.writeString(date);
         parcel.writeString(start);
         parcel.writeString(end);
         parcel.writeString(location);

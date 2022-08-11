@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:gravity="center"
         android:minHeight="50dp"
@@ -19,6 +19,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/detailTextVenue"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_venue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/red"
+        android:textSize="12dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/detailVenue"
+        app:layout_constraintStart_toStartOf="@+id/detailVenue"
+        app:layout_constraintTop_toBottomOf="@+id/detailVenue" />
 
     <EditText
         android:id="@+id/detailName"
@@ -34,6 +47,19 @@
         app:layout_constraintTop_toTopOf="@+id/detailVenue"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
+    <TextView
+        android:id="@+id/error_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/red"
+        android:textSize="12dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/detailName"
+        app:layout_constraintStart_toStartOf="@+id/detailName"
+        app:layout_constraintTop_toBottomOf="@+id/detailName" />
+
     <EditText
         android:id="@+id/detailCapacity"
         android:layout_width="0dp"
@@ -42,25 +68,78 @@
         android:layout_marginEnd="50dp"
         android:gravity="center"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/detailStartTime"
+        app:layout_constraintBottom_toBottomOf="@+id/detailDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/detailTextCapacity"
         app:layout_constraintTop_toTopOf="@+id/detailName"
         app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/error_capacity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/red"
+        android:textSize="12dp"
+        android:text="TEXTVIEW"
+        app:layout_constraintEnd_toEndOf="@+id/detailCapacity"
+        app:layout_constraintStart_toStartOf="@+id/detailCapacity"
+        app:layout_constraintTop_toBottomOf="@+id/detailCapacity" />
+
+    <EditText
+        android:id="@+id/detailDate"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/detailStartTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/detailTextDate"
+        app:layout_constraintTop_toTopOf="@+id/detailCapacity"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/error_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:textColor="@color/red"
+        android:textSize="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/detailDate"
+        app:layout_constraintStart_toStartOf="@+id/detailDate"
+        app:layout_constraintTop_toBottomOf="@+id/detailDate" />
 
     <EditText
         android:id="@+id/detailStartTime"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="150dp"
         android:gravity="center"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textHyphen"
         app:layout_constraintStart_toEndOf="@+id/detailTextStart"
-        app:layout_constraintTop_toTopOf="@+id/detailCapacity"
+        app:layout_constraintTop_toTopOf="@+id/detailDate"
         app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/error_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="textView"
+        android:visibility="invisible"
+        android:textColor="@color/red"
+        android:textSize="12dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/detailEndTime"
+        app:layout_constraintStart_toStartOf="@+id/detailStartTime"
+        app:layout_constraintTop_toBottomOf="@+id/detailStartTime" />
 
     <TextView
         android:id="@+id/textHyphen"
@@ -82,28 +161,27 @@
         android:gravity="center"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/detailStartTime"
-        app:layout_constraintEnd_toEndOf="@+id/detailCapacity"
+        app:layout_constraintEnd_toEndOf="@+id/detailDate"
         app:layout_constraintStart_toEndOf="@+id/textHyphen"
         app:layout_constraintTop_toTopOf="@+id/detailStartTime"
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Button
         android:id="@+id/detailAccept"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="50dp"
         android:text="Accept this event"
         app:layout_constraintEnd_toEndOf="@+id/detailEndTime"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="@+id/detailTextStart"
+        app:layout_constraintStart_toStartOf="@+id/imageSchedule"
         app:layout_constraintTop_toBottomOf="@+id/detailStartTime" />
 
     <Button
         android:id="@+id/detailModify"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
-        android:text="Modify this event"
+        android:text="Edit this event"
         app:layout_constraintEnd_toEndOf="@+id/detailAccept"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/detailAccept"
@@ -141,6 +219,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/detailCapacity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/detailCapacity" />
+
+    <TextView
+        android:id="@+id/detailTextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:gravity="center_vertical|left"
+        android:text="Date: "
+        app:layout_constraintBottom_toBottomOf="@+id/detailDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detailDate" />
 
     <TextView
         android:id="@+id/detailTextStart"
@@ -187,6 +276,16 @@
         app:srcCompat="@drawable/icon_people" />
 
     <ImageView
+        android:id="@+id/imageCalender"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/detailTextDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/detailTextDate"
+        app:srcCompat="@drawable/icon_calender"/>
+
+    <ImageView
         android:id="@+id/imageSchedule"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -206,7 +305,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/close"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
